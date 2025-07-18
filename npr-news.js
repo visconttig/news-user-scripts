@@ -9,20 +9,42 @@
 
 
 
-// set left-margin to paragraphs: p { lef-margin: 24px !important; }
-
 (function() {
     'use strict';
+
+    // Inject CSS once
+    function injectCustomStyles() {
+        const style = document.createElement('style');
+        style.textContent = `
+
+            .storytitle h1, .childstory .storytitle h2, h2.contentsubtitle {
+                color: black !important;
+            }
+
+            p {
+                color: black !important;
+            }
+            
+            .storytext a {
+                color: grey;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    injectCustomStyles();
 
     let donationsBox = "body#ng-app";
     let donateButton = "li#navigation__station-donate-mount";
     let tags = "div.tags";
     let shareButtons = ".share-tools.share-tools--secondary";
     let moreStoriesSection = "aside#end-of-story-recommendations-mount";
-    let endOfStorySupportBox = "div#callout-end-of-story-mount-piano-wrap"
+    let endOfStorySupportBox = "div#callout-end-of-story-mount-piano-wrap";
+    let yetAnotherDonationsBox = "article.pn-ribbon";
+    let giftBox = "body#ng-app";
     let footer = "footer#npr-footer";
 
-    let extraSelectors = [donationsBox, donateButton, tags, shareButtons, moreStoriesSection, endOfStorySupportBox, footer].join(", ");
+    let extraSelectors = [donationsBox, donateButton, tags, shareButtons, moreStoriesSection, endOfStorySupportBox, yetAnotherDonationsBox, giftBox, footer].join(", ");
 
 
     const removePlayer = () => {
