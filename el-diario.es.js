@@ -64,34 +64,34 @@
 })();
 
 
-// // (function() {
-// //     'use strict';
+(function() {
+    'use strict';
 
-// //     function removePaywallModal() {
-// //         // 1. Remove the modal
-// //         const modal = document.querySelector('.tp-modal');
-// //         if (modal) {
-// //             modal.remove();
-// //             console.log('🧼 Removed Piano paywall modal');
-// //         }
+    function removePaywallModal() {
+        // 1. Remove the modal
+        const modal = document.querySelector('.tp-modal');
+        if (modal) {
+            modal.remove();
+            console.log('🧼 Removed Piano paywall modal');
+        }
 
-// //         // 2. Restore scrolling
-// //         document.body.style.overflow = 'auto';
-// //         document.documentElement.style.overflow = 'auto';
+        // 2. Restore scrolling
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
 
-// //         // 3. Remove any backdrop/overlay if present
-// //         const overlay = document.querySelector('.tp-backdrop, .tp-modal-backdrop, .tp-veil'); // guesswork
-// //         if (overlay) {
-// //             overlay.remove();
-// //             console.log('💨 Removed modal overlay');
-// //         }
-// //     }
+        // 3. Remove any backdrop/overlay if present
+        const overlay = document.querySelector('.tp-backdrop, .tp-modal-backdrop, .tp-veil'); // guesswork
+        if (overlay) {
+            overlay.remove();
+            console.log('💨 Removed modal overlay');
+        }
+    }
 
-// //     // Run once immediately
-// //     removePaywallModal();
+    // Run once immediately
+    removePaywallModal();
 
-//     // Run continuously to fight reinjection
-//     const observer = new MutationObserver(() => removePaywallModal());
-//     observer.observe(document.body, { childList: true, subtree: true });
-// })();
+    // Run continuously to fight reinjection
+    const observer = new MutationObserver(() => removePaywallModal());
+    observer.observe(document.body, { childList: true, subtree: true });
+})();
 
