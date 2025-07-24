@@ -33,11 +33,17 @@
     let related_articles = "aside.know-more.know-more--with-image";
     let up_next_videos = "figure.embed-container.embed-container--type-dailymotion.ratio";
     let tags = ".tags";
-    let others = ".partner-wrapper";
+    let goHomeFloatingButton = "a.go-home__wrapper";
+    let extraArticles = ".recirculation-area";
+    // let mostRead = "aside.recirculation-block.recirculation-block--most-viewed-content-by-partners.show-in-mobile.show-in-tablet.show-in-desktop";
+    // let others = ".partner-wrapper"; <==== this one NO !!!
     let redundant_subtitle = "li.subtitle--hasAnchor";
-    // let end_of_article_links = ".c-content";
-    // let footer = ".row.row__footer";
-    let extraSelectors = [header, pre_article_extras, share_buttons, authors_info, twitter_posts, related_articles, up_next_videos, tags, others, redundant_subtitle].join(", ");
+    // let end_of_article_links = ".c-content"; <==== this one NO !!!
+    let errorReportButton = "div#error-report";
+    let sponsoredContent = ".sponsored-content-wrapper";
+    let comments = "div#edi-comments";
+    let footer = ".row.row__footer";
+    let extraSelectors = [header, pre_article_extras, share_buttons, authors_info, twitter_posts, related_articles, up_next_videos, tags, goHomeFloatingButton, extraArticles, redundant_subtitle, errorReportButton, sponsoredContent, comments, footer].join(", ");
 
 
     const removeElements = () => {
