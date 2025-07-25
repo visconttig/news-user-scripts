@@ -36,6 +36,7 @@
     let twitter_posts = "figure.embed-container.embed-container--type-twitter";
     let related_articles = "aside.know-more.know-more--with-image";
     let up_next_videos = "figure.embed-container.embed-container--type-dailymotion.ratio"; // <=== !!! this one hide the videos
+    let subscribeBox = "div#container-after-news-outlook";
     let tags = ".tags";
     let goHomeFloatingButton = "a.go-home__wrapper";
     let extraArticles = ".recirculation-area";
@@ -44,7 +45,7 @@
     let sponsoredContent = ".sponsored-content-wrapper";
     let comments = "div#edi-comments";
     let footer = ".row.row__footer";
-    let extraSelectors = [header, pre_article_extras, share_buttons, authors_info, twitter_posts, related_articles, up_next_videos, tags, goHomeFloatingButton, extraArticles, redundant_subtitle, errorReportButton, sponsoredContent, comments, footer].join(", ");
+    let extraSelectors = [header, pre_article_extras, share_buttons, authors_info, twitter_posts, related_articles, subscribeBox, tags, goHomeFloatingButton, extraArticles, redundant_subtitle, errorReportButton, sponsoredContent, comments, footer].join(", ");
 
 
     const removeElements = () => {
