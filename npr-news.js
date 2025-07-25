@@ -15,7 +15,7 @@
     // Inject CSS once
     function injectCustomStyles() {
         const style = document.createElement('style');
-        style.textContent = `
+        style.textContent = /* css */ `
 
             .storytitle h1, .childstory .storytitle h2, h2.contentsubtitle {
                 color: black !important;

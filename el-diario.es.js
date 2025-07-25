@@ -16,7 +16,7 @@
     // Inject CSS once
     function injectCustomStyles() {
         const style = document.createElement('style');
-        style.textContent = `
+        style.textContent = /* css */ `
 
         body {
             padding: 3rem 1rem;
