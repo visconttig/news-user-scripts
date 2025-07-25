@@ -16,25 +16,35 @@
     function injectCustomStyles() {
         const style = document.createElement('style');
         style.textContent = `
-
+        .bbc-hidden {
+            display: none !important;
+        }
         `;
         document.head.appendChild(style);
     }
 
     injectCustomStyles();
 
-    let podcastPromo = ".bbc-4quw3x.e1rfboeq7";
-    let topStories = ".bbc-10pxgv6";
-    let extraSelectors = [podcastPromo, topStories].join(", ");
+    let articleInfo = "section[aria-labelledby='article-byline']"; // <=== This is the only one working !!
+    let podcastPromo = 'div[data-e2e="podcast-promo"]';
+    let readMore1 = "section[data-e2e='recommendations-heading']";
+    let readMore = '[data-testid="features"]';
+    let mostRead = "section[aria-labelledby='recommendations-heading']";
+    let topStories = 'div[data-testid="top-stories"]';
 
 
-    const removePlayer = () => {
-        const player = document.querySelector(`${extraSelectors}`);
-        if (player) {
-            player.remove();
-            console.log('x removed');
-        }
-    };
+    let extraSelectors = [articleInfo, podcastPromo, readMore1, readMore, mostRead, topStories].join(", ");
+
+
+// Hide elements instead of hidding it to avoid conflicts with React Virtual DOM
+const removePlayer = () => {
+    const player = document.querySelector(`${extraSelectors}`);
+    if (player && !player.classList.contains('bbc-hidden')) {
+        player.classList.add('bbc-hidden');
+        console.log('🎧 Podcast promo visually hidden');
+    }
+};
+
 
     // Initial attempt
     removePlayer();
@@ -46,37 +56,5 @@
         childList: true,
         subtree: true
     });
-})();
-
-
-(function() {
-    'use strict';
-
-    function removePaywallModal() {
-        // 1. Remove the modal
-        const modal = document.querySelector('.tp-modal');
-        if (modal) {
-            modal.remove();
-            console.log('🧼 Removed Piano paywall modal');
-        }
-
-        // 2. Restore scrolling
-        document.body.style.overflow = 'auto';
-        document.documentElement.style.overflow = 'auto';
-
-        // 3. Remove any backdrop/overlay if present
-        const overlay = document.querySelector('.tp-backdrop, .tp-modal-backdrop, .tp-veil'); // guesswork
-        if (overlay) {
-            overlay.remove();
-            console.log('💨 Removed modal overlay');
-        }
-    }
-
-    // Run once immediately
-    removePaywallModal();
-
-    // Run continuously to fight reinjection
-    const observer = new MutationObserver(() => removePaywallModal());
-    observer.observe(document.body, { childList: true, subtree: true });
 })();
 
