@@ -34,9 +34,15 @@
     }
 
     injectCustomStyles();
+    // #npr-player, .npr-player, .bucketwrap, body#ng-app 
+    let player = "#npr-player";
+    //let interleavedSuggestions = "div.bucketwrap"; // <=== too aggressive !! (hide images)
+    let interleavedSuggestions = "div.bucketwrap.internallink";
 
-    let donationsBox = "body#ng-app";
+    // let donationsBox = "body#ng-app"; <=== removes images
     let donateButton = "li#navigation__station-donate-mount";
+    let storyMeta = "div#story-meta";
+    let inlinePlayer = "div#headlineaudio";
     let tags = "div.tags";
     let shareButtons = ".share-tools.share-tools--secondary";
     let moreStoriesSection = "aside#end-of-story-recommendations-mount";
@@ -46,11 +52,11 @@
     let giftBox = "body#ng-app";
     let footer = "footer#npr-footer";
 
-    let extraSelectors = [donationsBox, donateButton, tags, shareButtons, moreStoriesSection, endOfStorySupportBox, yetAnotherDonationsBox, stickyDonationBar, giftBox, footer].join(", ");
+    let extraSelectors = [interleavedSuggestions, player, donateButton, storyMeta, inlinePlayer, tags, shareButtons, moreStoriesSection, endOfStorySupportBox, yetAnotherDonationsBox, stickyDonationBar, giftBox, footer, yetAnotherDonationsBox].join(", ");
 
 
     const removePlayer = () => {
-        const player = document.querySelector(`#npr-player, .npr-player, .bucketwrap, body#ng-app, ${extraSelectors}`);
+        const player = document.querySelector(`${extraSelectors}`);
         if (player) {
             player.remove();
             console.log('🎧 NPR player removed');
