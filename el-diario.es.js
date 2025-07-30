@@ -1,4 +1,3 @@
-
 // ==UserScript==
 // @name         ElDiario.es - Reader mode
 // @namespace    http://tampermonkey.net/
