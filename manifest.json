@@ -1,0 +1,13 @@
+{
+  "scripts": [
+    "---test.js",
+    "ars-technica.js",
+    "bbc.com-pr.js",
+    "china-news.com.js",
+    "el-diario.es.js",
+    "linkedin.com.js",
+    "muy-interesante.js",
+    "npr-news.js", 
+    "reddit.com.js"
+  ]
+}
