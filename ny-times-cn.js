@@ -65,6 +65,8 @@
     articleDate: "div.byline",
     titleMeta: "div.article-header header small",
     imageCite: "figcaption cite",
+    englishButtonSelector: "ul.dual-btn li:nth-of-type(3)",
+    relatedArticles: "div.article-ribbon",
   };
 
   const testSelectorMap = {};
