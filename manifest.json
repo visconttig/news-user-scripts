@@ -1,6 +1,5 @@
 {
   "scripts": [
-    "---test.js",
     "ars-technica.js",
     "bbc.com-pr.js",
     "china-news.com.js",
@@ -8,6 +7,7 @@
     "linkedin.com.js",
     "muy-interesante.js",
     "npr-news.js", 
-    "reddit.com.js"
+    "reddit.com.js",
+    "ny-times-cn.js"
   ]
 }
