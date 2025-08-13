@@ -25,6 +25,25 @@
 
   injectCustomStyles();
 
+  const testSelectorMap = {};
+
+  const testSelectors = () => {
+    Object.entries(testSelectorMap).forEach(([label, selector]) => {
+      const nodes = document.querySelectorAll(selector);
+      nodes.forEach((el) => {
+        if (!el.classList.contains("test")) {
+          el.classList.add("test");
+          console.log(`Added test class: [${label}]`, el);
+        }
+      });
+    });
+  };
+
+  document.querySelectorAll("strong").forEach((strong) => {
+    // Replace the <strong> with its inner content
+    strong.replaceWith(...strong.childNodes);
+  });
+
   let header = ".header-container";
   let pre_article_extras = ".row.row__header";
   let share_buttons = "footer.rs-pill";

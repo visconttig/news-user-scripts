@@ -2,19 +2,19 @@
 // @name         Chinese Reader (#ChinaNews)
 // @namespace    http://tampermonkey.net/
 // @version      1.1
-// @description  
+// @description
 // @match        https://www.chinanews.com/*
 // @grant        none
 // ==/UserScript==
 
 (function () {
-    'use strict';
+  "use strict";
 
-    // Inject custom styles
-    function injectCustomStyles() {
-        const style = document.createElement('style');
+  // Inject custom styles
+  function injectCustomStyles() {
+    const style = document.createElement("style");
 
-        style.textContent = /* css */ `
+    style.textContent = /* css */ `
             
             .hidden-xyz {
                 visibility: hidden !important;
@@ -39,55 +39,51 @@
 
 
         `;
-        document.head.appendChild(style);
-    }
+    document.head.appendChild(style);
+  }
 
-    injectCustomStyles();
+  injectCustomStyles();
 
+  const selectorMap = {
+    navBar: "div#navbar",
+    leftNavBar: "div.con_left_nav",
+    sider: "div.con_right",
+    selectedNews: "div.selected_news_wrapper",
+    footer: "div.pagebottom",
+    downloadRibbon: "div.download_wrapper",
+    commentsSection: "div.comment_wrapper",
+    channelButton: "div.channel",
+    editorInfo: "div.adEditor",
+    redundantTime: "div.content_left_time",
+  };
 
-const selectorMap = {
-    "navBar": "div#navbar",
-    "leftNavBar": "div.con_left_nav",
-    "sider": "div.con_right",
-    "selectedNews": "div.selected_news_wrapper",
-    "footer": "div.pagebottom",
-    "downloadRibbon": "div.download_wrapper",
-    "commentsSection": "div.comment_wrapper",
-    "channelButton": "div.channel",
-    "editorInfo": "div.adEditor", 
-    "redundantTime": "div.content_left_time"
-};
+  // Flatten to use in querySelectorAll
+  const selectors = Object.values(selectorMap).join(", ");
 
-// Flatten to use in querySelectorAll
-const selectors = Object.values(selectorMap).join(", ");
-
-
-const removeElements = () => {
-Object.entries(selectorMap).forEach(([label, selector]) => {
-    const nodes = document.querySelectorAll(selector);
-    nodes.forEach(el => {
-        if (!el.classList.contains('unmounted')) {
-            el.classList.add('unmounted');
-            console.log(`👻 Hidden [${label}]`, el);
+  const removeElements = () => {
+    Object.entries(selectorMap).forEach(([label, selector]) => {
+      const nodes = document.querySelectorAll(selector);
+      nodes.forEach((el) => {
+        if (!el.classList.contains("unmounted")) {
+          el.classList.add("unmounted");
+          console.log(`👻 Hidden [${label}]`, el);
         }
+      });
     });
-});
+  };
 
-}
+  // Initial run
+  removeElements();
 
+  // Observe DOM changes and hide again
+  const observer = new MutationObserver(() => {
+    setTimeout(() => {
+      removeElements();
+    }, 100); // Slight delay to avoid React re-render collision
+  });
 
-    // Initial run
-    removeElements();
-
-    // Observe DOM changes and hide again
-    const observer = new MutationObserver(() => {
-        setTimeout(() => {
-            removeElements();
-        }, 100); // Slight delay to avoid React re-render collision
-    });
-
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
 })();

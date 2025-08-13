@@ -24,9 +24,16 @@
                 display: none !important;
             }
 
+            body, * {
+              background-color: rgb(255, 255, 255) !important;
+            } 
+
+            header h1 {
+              color: rgb(0, 0, 0) !important;
+            }
+
             .test {
                 border: 7px dashed red !important;
-                background-color: rgba(97, 97, 97, 1) !important;
             }
 
 
@@ -37,6 +44,20 @@
 
   injectCustomStyles();
 
+  const testSelectorMap = {};
+
+  const testSelectors = () => {
+    Object.entries(testSelectorMap).forEach(([label, selector]) => {
+      const nodes = document.querySelectorAll(selector);
+      nodes.forEach((el) => {
+        if (!el.classList.contains("test")) {
+          el.classList.add("test");
+          console.log(`Added test class: [${label}]`, el);
+        }
+      });
+    });
+  };
+
   const selectorMap = {
     authorBio: "div.author-mini-bio",
     mostRead: "div.single-most-read",
@@ -45,6 +66,7 @@
     header: "header#site-header",
     footer: "footer.site-footer",
     postNavigation: "div.post-navigation",
+    imageCaption: "div.caption",
   };
 
   // Flatten to use in querySelectorAll
