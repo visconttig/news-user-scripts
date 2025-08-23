@@ -38,11 +38,6 @@
 
   injectCustomStyles();
 
-  document.querySelectorAll("strong").forEach((strong) => {
-    // Replace the <strong> with its inner content
-    strong.replaceWith(...strong.childNodes);
-  });
-
   const selectorMap = {
     sideBarContainer: "div#right-sidebar-container",
   };

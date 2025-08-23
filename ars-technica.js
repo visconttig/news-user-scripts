@@ -24,14 +24,6 @@
                 display: none !important;
             }
 
-            body, * {
-              background-color: rgb(255, 255, 255) !important;
-            } 
-
-            header h1 {
-              color: rgb(0, 0, 0) !important;
-            }
-
             .test {
                 border: 7px dashed red !important;
             }

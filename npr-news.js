@@ -19,23 +19,13 @@
                 color: black !important;
             }
 
-            p {
-                color: black !important;
-            }
-            
-            .storytext a, u {
-                color: grey;
-                text-decoration: none !important;
-            }
         `;
     document.head.appendChild(style);
   }
 
   injectCustomStyles();
 
-  // #npr-player, .npr-player, .bucketwrap, body#ng-app
   let player = "#npr-player";
-  //let interleavedSuggestions = "div.bucketwrap"; // <=== too aggressive !! (hide images)
   let interleavedSuggestions = "div.bucketwrap.internallink";
 
   // let donationsBox = "body#ng-app"; <=== removes images

@@ -56,11 +56,6 @@
 
   injectCustomStyles();
 
-  document.querySelectorAll("strong").forEach((strong) => {
-    // Replace the <strong> with its inner content
-    strong.replaceWith(...strong.childNodes);
-  });
-
   const selectorMap = {
     header: "header.title-bar",
     shareTools: "div[class*='share-tools-top-container']",
