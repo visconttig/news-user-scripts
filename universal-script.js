@@ -37,6 +37,33 @@
     return; // Exit early if not whitelisted
   }
 
+  function injectGoogleFonts() {
+    const head = document.head;
+
+    // preconnect to fonts.googleapis.com
+    const preconnect1 = document.createElement("link");
+    preconnect1.rel = "preconnect";
+    preconnect1.href = "https://fonts.googleapis.com";
+    head.appendChild(preconnect1);
+
+    // preconnect to fonts.gstatic.com with crossorigin
+    const preconnect2 = document.createElement("link");
+    preconnect2.rel = "preconnect";
+    preconnect2.href = "https://fonts.gstatic.com";
+    preconnect2.crossOrigin = "anonymous";
+    head.appendChild(preconnect2);
+
+    // the actual font stylesheet
+    const fontLink = document.createElement("link");
+    fontLink.rel = "stylesheet";
+    fontLink.href =
+      "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap";
+    head.appendChild(fontLink);
+  }
+
+  // Call this early in your script
+  injectGoogleFonts();
+
   function injectCustomStyles() {
     const style = document.createElement("style");
     style.textContent = /* css */ `
