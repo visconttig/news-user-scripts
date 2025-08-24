@@ -26,6 +26,8 @@
                 cursor: initial;
                 border-bottom: none;
             }
+
+}
         `;
     document.head.appendChild(style);
   }

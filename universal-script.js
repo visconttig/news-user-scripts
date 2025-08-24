@@ -74,8 +74,9 @@ html {
 }
 
             body, * {
-                font-family: "Noto Serif", serif !important;
+              font-family: "Noto Serif", serif !important;
               background-color: rgb(255, 255, 255) !important;
+              line-height: 30px !important;
             } 
 
             header h1, p {
@@ -94,15 +95,27 @@ html {
 
 p {
     font-size: 2.4rem !important;
-    color: black !important;
 }
 
-a.disabled-link {
+a.disabled-link, p a u {
     pointer-events: none !important;
     color: inherit !important;
     text-decoration: none !important;
     border-bottom: none !important;
  }
+
+                @media (min-width: 63rem) {
+    *[class*="bbc-"] {
+        grid-column: unset !important;
+        grid-template-columns: none !important;
+        max-width: 100% !important;
+    }
+  }
+
+
+    .story-layout .storytitle, .story-layout .story-meta, .story-layout .story #headlineaudio, .story-layout .storytext>p, .story-layout .storytext>.edTag, .story-layout .storytext>blockquote, .story-layout .storytext>.bucketwrap.list, .story-layout .supplementarycontent>.bucketwrap.list, .story-layout .breadcrumb, .story-layout .story>.slug-wrap, .story-layout .correction, .story-layout .date-block-affiliation-wrap, .story-layout .story>.tags, .story-layout .story>.social-wrap, .story-layout .story>.correction, .story-layout .hr, .story-layout .tmplMusicSongsStreamPlaylist .playlistwrap, .story-layout .bucketwrap.resaudio, .story-layout .share-tools--secondary, .story-layout .transcript .icn-story-transcript-wrap, .story-layout .story .callout, .story-layout .story .callout-end-of-story-mount-piano-wrap, .story-layout .org-promo, .story-layout .bucketwrap.twitter.large, .story-layout .storytext>.container.large, .story-layout .bucketwrap {
+    max-width: 100% !important;
+}
 
     `;
     document.head.appendChild(style);
