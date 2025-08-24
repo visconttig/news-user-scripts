@@ -75,12 +75,13 @@ html {
 
             body, * {
               font-family: "Noto Serif", serif !important;
-              background-color: rgb(255, 255, 255) !important;
+             // background-color: rgb(255, 255, 255) !important;
+background-color: rgb(0,0,0) !important;
               line-height: 30px !important;
             } 
 
             header h1, p {
-              color: rgb(0, 0, 0) !important;
+            //  color: rgb(0, 0, 0) !important;
             }
 
     
