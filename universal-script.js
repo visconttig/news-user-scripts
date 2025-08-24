@@ -78,6 +78,7 @@ html {
              // background-color: rgb(255, 255, 255) !important;
 background-color: rgb(0,0,0) !important;
               line-height: 30px !important;
+color: white !important;
             } 
 
             header h1, p {
