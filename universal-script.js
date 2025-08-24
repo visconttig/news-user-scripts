@@ -77,12 +77,12 @@ html {
               font-family: "Noto Serif", serif !important;
              // background-color: rgb(255, 255, 255) !important;
 background-color: rgb(0,0,0) !important;
-              line-height: 30px !important;
+              line-height: 20px !important;
 color: white !important;
             } 
 
-            header h1, p {
-            //  color: rgb(0, 0, 0) !important;
+            h1, h2, h3, h4, h5, h6 {
+             line-height: 30px !important;
             }
 
     
@@ -96,7 +96,7 @@ color: white !important;
 }
 
 p {
-    font-size: 2.4rem !important;
+    font-size: 1.8rem !important;
 }
 
 a.disabled-link, p a u {
