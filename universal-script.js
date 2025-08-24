@@ -73,17 +73,33 @@ html {
   font-size: 10px !important;
 }
 
-            body, * {
-              font-family: "Noto Serif", serif !important;
-             // background-color: rgb(255, 255, 255) !important;
-background-color: rgb(0,0,0) !important;
-              line-height: 20px !important;
-color: white !important;
+ body, * {
+   font-family: "Noto Serif", serif !important;
+   // background-color: rgb(255, 255, 255) !important;
+   //background-color: rgb(0,0,0) !important;
+   line-height: 20px !important;
+   //color: white !important;
             } 
 
-            h1, h2, h3, h4, h5, h6 {
-             line-height: 30px !important;
-            }
+/* Force readable colors but let OS mode decide */
+@media (prefers-color-scheme: light) {
+  body, * {
+    background-color: #fff !important;
+    color: #000 !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body, * {
+    background-color: #000 !important;
+    color: #fff !important;
+  }
+}
+
+
+ h1, h2, h3, h4, h5, h6 {
+     line-height: 30px !important;
+   }
 
     
  p {
