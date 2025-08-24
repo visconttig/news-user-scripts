@@ -16,7 +16,7 @@
     style.textContent = /* css */ `
 
             .storytitle h1, .childstory .storytitle h2, h2.contentsubtitle {
-                color: black !important;
+                //color: black !important;
             }
 
         `;
