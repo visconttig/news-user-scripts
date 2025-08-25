@@ -42,6 +42,9 @@
   let stickyDonationBar = "div#global-stickybar-mount-piano-wrap";
   let giftBox = "body#ng-app";
   let footer = "footer#npr-footer";
+  let header = "header#globalheader";
+  let slug = "div.slug-wrap";
+  let imageCredits = "span.credit";
 
   let extraSelectors = [
     interleavedSuggestions,
@@ -58,6 +61,9 @@
     giftBox,
     footer,
     yetAnotherDonationsBox,
+    header,
+    slug,
+    imageCredits,
   ].join(", ");
 
   const removePlayer = () => {

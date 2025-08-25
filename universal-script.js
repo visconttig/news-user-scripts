@@ -109,8 +109,17 @@ h1, h2, h3, h4, h5, h6 {
   font-variation-settings:
     "wdth" 100;
 
-        font-size: 1.8rem !important;
+   font-size: 1.8rem !important;
 }
+
+p[class*='caption'], 
+div[class*='caption'] p, 
+figcaption, figcaption * {
+  color: gray !important;
+  font-size: 0.8rem !important;
+  line-height: 1.2 !important;
+}
+
 
 
 a.disabled-link, p a u {
