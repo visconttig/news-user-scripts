@@ -60,6 +60,7 @@
     shareButton: "div[class*='index_actions']",
     relatedArticles: "div[class*='index_main-content__after']",
     tags: "div[class*='index_art_tag']",
+    footer: "footer[class*='footer-minimal']",
   };
 
   // Flatten to use in querySelectorAll
