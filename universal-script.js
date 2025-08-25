@@ -112,6 +112,14 @@ h1, h2, h3, h4, h5, h6 {
    font-size: 1.8rem !important;
 }
 
+h1 {
+  font-size: 3.4rem !important;
+}
+
+h2 {
+  font-size: 2.6rem !important;
+}
+
 p[class*='caption'], 
 div[class*='caption'] p, 
 figcaption, figcaption * {
