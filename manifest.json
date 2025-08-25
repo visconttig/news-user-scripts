@@ -1,13 +1,4 @@
 {
   "scripts": [
-    "ars-technica.js",
-    "bbc.com-pr.js",
-    "china-news.com.js",
-    "el-diario.es.js",
-    "linkedin.com.js",
-    "npr-news.js", 
-    "reddit.com.js",
-    "ny-times-cn.js",
-    "universal-script.js"
   ]
 }

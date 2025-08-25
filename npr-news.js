@@ -15,9 +15,11 @@
     const style = document.createElement("style");
     style.textContent = /* css */ `
 
-            .storytitle h1, .childstory .storytitle h2, h2.contentsubtitle {
-                //color: black !important;
-            }
+
+                .story-layout .storytitle, .story-layout .story-meta, .story-layout .story #headlineaudio, .story-layout .storytext>p, .story-layout .storytext>.edTag, .story-layout .storytext>blockquote, .story-layout .storytext>.bucketwrap.list, .story-layout .supplementarycontent>.bucketwrap.list, .story-layout .breadcrumb, .story-layout .story>.slug-wrap, .story-layout .correction, .story-layout .date-block-affiliation-wrap, .story-layout .story>.tags, .story-layout .story>.social-wrap, .story-layout .story>.correction, .story-layout .hr, .story-layout .tmplMusicSongsStreamPlaylist .playlistwrap, .story-layout .bucketwrap.resaudio, .story-layout .share-tools--secondary, .story-layout .transcript .icn-story-transcript-wrap, .story-layout .story .callout, .story-layout .story .callout-end-of-story-mount-piano-wrap, .story-layout .org-promo, .story-layout .bucketwrap.twitter.large, .story-layout .storytext>.container.large, .story-layout .bucketwrap {
+    max-width: 100% !important;
+}
+
 
         `;
     document.head.appendChild(style);

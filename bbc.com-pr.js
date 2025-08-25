@@ -27,6 +27,15 @@
                 border-bottom: none;
             }
 
+
+                @media (min-width: 63rem) {
+    *[class*="bbc-"] {
+        grid-column: unset !important;
+        grid-template-columns: none !important;
+        max-width: 100% !important;
+    }
+  }
+
 }
         `;
     document.head.appendChild(style);
