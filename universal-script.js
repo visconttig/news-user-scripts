@@ -75,7 +75,7 @@ html {
 
 body, p, li, blockquote, article, section {
   font-family: "Noto Serif", serif !important;
-  line-height: 1.5 !important; /* 27px for 18px text */
+  line-height: 1.5 !important; 
 }
 
 
@@ -113,18 +113,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3.4rem !important;
+  font-size: 2.2rem !important;
 }
 
 h2 {
-  font-size: 2.6rem !important;
+  font-size: 2rem !important;
 }
 
 p[class*='caption'], 
 div[class*='caption'] p, 
 figcaption, figcaption * {
   color: gray !important;
-  font-size: 0.8rem !important;
+  font-size: 1.2rem !important;
   line-height: 1.2 !important;
 }
 
