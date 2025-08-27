@@ -38,27 +38,13 @@
   }
 
   function injectGoogleFonts() {
-    const head = document.head;
-
-    // preconnect to fonts.googleapis.com
-    const preconnect1 = document.createElement("link");
-    preconnect1.rel = "preconnect";
-    preconnect1.href = "https://fonts.googleapis.com";
-    head.appendChild(preconnect1);
-
-    // preconnect to fonts.gstatic.com with crossorigin
-    const preconnect2 = document.createElement("link");
-    preconnect2.rel = "preconnect";
-    preconnect2.href = "https://fonts.gstatic.com";
-    preconnect2.crossOrigin = "anonymous";
-    head.appendChild(preconnect2);
-
-    // the actual font stylesheet
-    const fontLink = document.createElement("link");
-    fontLink.rel = "stylesheet";
-    fontLink.href =
+    if (document.getElementById("tm-google-fonts")) return; // avoid duplicates
+    const link = document.createElement("link");
+    link.id = "tm-google-fonts";
+    link.rel = "stylesheet";
+    link.href =
       "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap";
-    head.appendChild(fontLink);
+    document.head.appendChild(link);
   }
 
   // Call this early in your script
@@ -72,17 +58,6 @@
 html {
   font-size: 10px !important;
 }
-
-body, p, li, blockquote, article, section {
-  font-family: "Noto Serif", serif !important;
-  line-height: 1.5 !important; 
-}
-
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.25 !important;
-}
-
 
 /* Force readable colors but let OS mode decide */
 @media (prefers-color-scheme: light) {
@@ -100,15 +75,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-    
- p {
+body, p, li, blockquote, article, section, h1, h2, h3, h4, h5, h6 {
   font-family: "Noto Serif", serif !important;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   font-variation-settings:
     "wdth" 100;
+  line-height: 1.5 !important; 
+}
 
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.25 !important;
+}
+    
+
+ p {
    font-size: 1.8rem !important;
 }
 
