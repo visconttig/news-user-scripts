@@ -59,6 +59,10 @@ html {
   font-size: 10px !important;
 }
 
+body {
+  padding: 0 32px !important;
+}
+
 /* Force readable colors but let OS mode decide */
 @media (prefers-color-scheme: light) {
   body, * {

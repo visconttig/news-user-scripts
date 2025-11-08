@@ -1,0 +1,8 @@
+{
+  "json-comments": {
+    "tips": "Please install the JsonComments plugin to enable commenting functionality for JSON files, see: https://github.com/zhangfisher/json_comments_extension",
+    "manifest.json": {
+      "scripts": "'universal-script' is used for general styling"
+    }
+  }
+}
