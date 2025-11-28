@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.1
 // @description
-// @match        https://www.bbc.com/portuguese/*
+// @match        https://www.bbc.com/*
 // @grant        none
 // ==/UserScript==
 
@@ -34,6 +34,39 @@
         grid-template-columns: none !important;
         max-width: 100% !important;
     }
+
+    .css-1cvxiy9 {
+      grid-column: 1 / 13 !important;
+    }
+  }
+
+
+  // BBC Chinese paragraphs
+  @media screen and (max-width: 1279px) {
+    .dPVOKT {
+        width: 100% !important;
+    }    
+
+        .hNbOGD {
+        width: 100% !important;
+    }
+}
+
+.dPVOKT {
+    width: 100% !important;
+}
+
+.hNbOGD {
+    width: 100% !important;
+}
+
+
+
+
+  #main-navigation-container, 
+  header {
+    display: none !important;
+    z-index: -9999 !important;
   }
 
 }
@@ -55,6 +88,12 @@
     relatedStories: "[aria-labelledby='related-content-heading']",
     endOfArticleMostRead: "[aria-labelledby='Most-Read']",
     footer: "footer",
+    // floatingNavigation: "#main-navigation-container",
+    sharteButtonsZh: "div[data-component='byline-block']",
+    relatedZh: "div[data-testid='ohio-section-3']",
+    moreArticlesZh: "div[data-testid='alaska-section']",
+    relatedArtsZh: "div[data-component='links-block']",
+    tagsZh: "div[data-component='tags']",
   };
 
   // Flatten to use in querySelectorAll

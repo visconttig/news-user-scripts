@@ -23,8 +23,8 @@
     /reddit\.com/,
     /phys\.org/,
     /quantamagazine\.org/,
-    // /chinanews\.com/,
-    // /cn\.nytimes\.com/,
+    /chinanews\.com/,
+    /cn\.nytimes\.com/,
   ];
 
   const url = location.href;
@@ -86,7 +86,8 @@ body, p, li, blockquote, article, section, h1, h2, h3, h4, h5, h6 {
   font-style: normal;
   font-variation-settings:
     "wdth" 100;
-  line-height: 1.5 !important; 
+  // line-height: 1.5 !important; 
+  line-height: 1.7 !important;
 }
 
 
@@ -154,10 +155,10 @@ a.disabled-link, p a u {
     }, 100); // Slight delay to avoid React re-render collision
   });
 
-  document.querySelectorAll("strong").forEach((strong) => {
-    // Replace the <strong> with its inner content
-    strong.replaceWith(...strong.childNodes);
-  });
+  // document.querySelectorAll("strong").forEach((strong) => {
+  //   // Replace the <strong> with its inner content
+  //   strong.replaceWith(...strong.childNodes);
+  // });
 
   injectCustomStyles();
   removeElements();
