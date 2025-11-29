@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         BBC-CN (#BBC-CN)
+// @name         BBC-ZH (#BBC-ZH)
 // @namespace    http://tampermonkey.net/
 // @version      1.1
 // @description
