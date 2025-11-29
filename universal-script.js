@@ -7,6 +7,55 @@
 // @grant        none
 // ==/UserScript==
 
+// ============================================================================
+// ============================================================================
+// === WARNING: NEVER — *EVER* — MESS WITH THE ROOT FONT-SIZE (html {font-size}) ===
+// ============================================================================
+// ============================================================================
+//
+// Changing the root font-size (html { font-size }) may *seem* like a simple
+// universal typography fix, BUT IT IS A NUCLEAR OPTION THAT BREAKS EVERYTHING.
+//
+// WHY YOU MUST NEVER TOUCH IT:
+//
+// 1) BREAKS BBC NEWS COMPLETELY
+//    - BBC uses "rem"-based grid breakpoints.
+//    - When you set html { font-size: 10px !important }, all their media queries
+//      shift unpredictably.
+//    - This SHRINKS THE MAIN ARTICLE TO 1/3 OF THE SCREEN and destroys layout.
+//    - It took you HOURS to figure this out. Don’t repeat the pain.
+//
+// 2) BREAKS ANY SITE USING REM FOR LAYOUT OR GRID
+//    - Columns collapse.
+//    - Containers become narrow or gigantic.
+//    - Entire sections fall out of alignment.
+//    - Systems relying on “1rem = 16px” logic stop working.
+//
+// 3) BREAKS RESPONSIVE BEHAVIOR
+//    - rem-based breakpoints get triggered at the wrong times.
+//    - Desktop layouts act like mobile, or vice-versa.
+//
+// 4) BREAKS JS THAT READS COMPUTED FONT SIZES
+//    - Many sites use JS to detect the computed root size.
+//    - When you override it, you cause miscalculations everywhere.
+//
+// 5) YOU DON’T NEED IT ANYWAY
+//    - Your scripts directly assign font sizes to paragraphs, headings, captions,
+//      etc. with !important.
+//    - You already have total control over typography WITHOUT touching the root.
+//    - Removing the root override has **zero downside**.
+//
+// TL;DR:
+// ======
+// ***You control all the text you care about directly.***
+// ***Root overrides destroy layouts and offer no benefit.***
+// ***BBC News is the proof — it instantly collapses if you touch html{font-size}.***
+//
+// LEAVE THE ROOT ALONE.
+// FUTURE YOU WILL THANK YOU.
+//
+// ============================================================================
+
 (function () {
   "use strict";
 
@@ -16,7 +65,7 @@
   const whitelistArray = [
     /arstechnica\.com/,
     /bbc\.com\/portuguese/,
-    /bbc\.com/,
+    /bbc\.com\/news\//,
     /eldiario\.es/,
     /ilpost\.it/,
     /npr\.org/,
@@ -55,10 +104,6 @@
     style.textContent = /* css */ `
 
 
-html {
-  font-size: 10px !important;
-}
-
 body {
   padding: 0 32px !important;
 }
@@ -86,7 +131,6 @@ body, p, li, blockquote, article, section, h1, h2, h3, h4, h5, h6 {
   font-style: normal;
   font-variation-settings:
     "wdth" 100;
-  // line-height: 1.5 !important; 
   line-height: 1.7 !important;
 }
 

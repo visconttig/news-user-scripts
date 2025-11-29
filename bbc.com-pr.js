@@ -41,7 +41,7 @@
   }
 
 
-  // BBC Chinese paragraphs
+  // BBC paragraphs
   @media screen and (max-width: 1279px) {
     .dPVOKT {
         width: 100% !important;
@@ -60,7 +60,42 @@
     width: 100% !important;
 }
 
+// BBC images
+@media screen and (max-width: 1279px) {
+    .GunZh {
+        width: 100% !important;
+    }
 
+}
+
+.GunZh
+ {
+    width: 100% !important;
+}
+
+// BBC videos
+@media screen and (max-width: 1279px) {
+    .gXrNRM {
+        width: 100% !important;
+    }
+}
+
+// videos
+.gXrNRM {
+    width: 100% !important;
+}
+
+
+// BBC images slider
+@media screen and (max-width: 1279px) {
+    .Qwxkf {
+        width: 100% !important;
+    }
+}
+
+.Qwxkf {
+    width: 100% !important;
+}
 
 
   #main-navigation-container, 
@@ -87,13 +122,17 @@
     relatedTopics: "[aria-labelledby='related-topics']",
     relatedStories: "[aria-labelledby='related-content-heading']",
     endOfArticleMostRead: "[aria-labelledby='Most-Read']",
+    imageCredits: "p[class='css-by8ykd']",
+    imageCredits2: "span[class='sc-5340b511-2 jVqbAn']",
+    authorCredits:
+      "i[id='additional-reporting-by-martin-yip-and-gemini-cheng-in-hong-kong']",
     footer: "footer",
-    // floatingNavigation: "#main-navigation-container",
     sharteButtonsZh: "div[data-component='byline-block']",
     relatedZh: "div[data-testid='ohio-section-3']",
     moreArticlesZh: "div[data-testid='alaska-section']",
     relatedArtsZh: "div[data-component='links-block']",
     tagsZh: "div[data-component='tags']",
+    imageCreditsZh: "p[class='css-1276odk']",
   };
 
   // Flatten to use in querySelectorAll

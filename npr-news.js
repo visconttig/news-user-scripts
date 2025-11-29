@@ -7,6 +7,25 @@
 // @grant        none
 // ==/UserScript==
 
+// ======================================================================
+//  ⚠️ DO NOT REMOVE THIS OVERRIDE ⚠️
+// ----------------------------------------------------------------------
+// This site forces: html { font-size: 62.5%; }  →  1rem = 10px
+// That completely breaks my universal rem-based typography
+// and makes this site's text look ~40% smaller than all others.
+//
+// This override restores the normal root size (1rem = 16px) ONLY HERE.
+// DO NOT delete it — it keeps this domain visually consistent
+// without triggering the BBC “layout meltdown” problem.
+//
+// Seriously: this line is here *on purpose*.
+// ======================================================================
+/*
+    html {
+      font-size: 100% !important;
+    }
+*/
+
 (function () {
   "use strict";
 
@@ -14,6 +33,11 @@
   function injectCustomStyles() {
     const style = document.createElement("style");
     style.textContent = /* css */ `
+
+
+    html {
+      font-size: 100% !important;
+    }
 
 
                 .story-layout .storytitle, .story-layout .story-meta, .story-layout .story #headlineaudio, .story-layout .storytext>p, .story-layout .storytext>.edTag, .story-layout .storytext>blockquote, .story-layout .storytext>.bucketwrap.list, .story-layout .supplementarycontent>.bucketwrap.list, .story-layout .breadcrumb, .story-layout .story>.slug-wrap, .story-layout .correction, .story-layout .date-block-affiliation-wrap, .story-layout .story>.tags, .story-layout .story>.social-wrap, .story-layout .story>.correction, .story-layout .hr, .story-layout .tmplMusicSongsStreamPlaylist .playlistwrap, .story-layout .bucketwrap.resaudio, .story-layout .share-tools--secondary, .story-layout .transcript .icn-story-transcript-wrap, .story-layout .story .callout, .story-layout .story .callout-end-of-story-mount-piano-wrap, .story-layout .org-promo, .story-layout .bucketwrap.twitter.large, .story-layout .storytext>.container.large, .story-layout .bucketwrap {
