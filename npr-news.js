@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Hide NPR Live Player (#npr-player)
+// @name         NPR News (#npr-news)
 // @namespace    http://tampermonkey.net/
 // @version      1.1
 // @description  Removes the floating NPR player that interferes with reading
