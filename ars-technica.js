@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.1
 // @description
-// @match        https://arstechnica.com/*
+// @match        https://www.arstechnica.com/*
 // @grant        none
 // ==/UserScript==
 

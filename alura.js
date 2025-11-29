@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.1
 // @description
-// @match        https://app.aluracursos.com/*
+// @match        https://www.app.aluracursos.com/*
 // @grant        none
 // ==/UserScript==
 

@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.1
 // @description
-// @match        https://bbc.com/zhongwen/*
+// @match        https://www.bbc.com/zhongwen/*
 // @grant        none
 // ==/UserScript==
 

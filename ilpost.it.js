@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.1
 // @description
-// @match        *://*.ilpost.it/*
+// @match        https://www.ilpost.it/*
 // @grant        none
 // ==/UserScript==
 

@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.1
 // @description
-// @match        https://cn.nytimes.com/*
+// @match        https://www.cn.nytimes.com/*
 // @grant        none
 // ==/UserScript==
 

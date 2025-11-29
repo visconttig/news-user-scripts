@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.1
 // @description
-// @match        https://phys.org/*
+// @match        https://www.phys.org/*
 // @grant        none
 // ==/UserScript==
 
