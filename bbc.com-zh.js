@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Ny-TimesCN (#NytCN)
+// @name         BBC-CN (#BBC-CN)
 // @namespace    http://tampermonkey.net/
 // @version      1.1
 // @description
