@@ -1,16 +1,17 @@
 {
-  "scripts": [
-    "universal-script.js",
-    "npr-news.js",
-    "ars-technica.js",
-    "bbc.com-pr.js",
-    "bbc.com-zh.js",
-    "china-news.com.js",
-    "el-diario.es.js",
-    "ilpost.it.js",
-    "ny-times-cn.js",
-    "physics.org.js",
-    "quanta-magazine.js",
-    "reddit.com.js"
-  ]
+  "scripts": {
+    "universal-script.js": ["*"],
+
+    "npr-news.js": ["https://www.npr.org/*"],
+    "ars-technica.js": ["https://arstechnica.com/*"],
+    "bbc.com-pr.js": ["https://www.bbc.com/*"],
+    "bbc.com-zh.js": ["https://www.bbc.com/zhongwen/*"],
+    "china-news.com.js": ["https://www.chinanews.com/*"],
+    "el-diario.es.js": ["https://www.eldiario.es/*"],
+    "ilpost.it.js": ["https://ilpost.it/*"],
+    "ny-times-cn.js": ["https://cn.nytimes.com/*"],
+    "physics.org.js": ["https://phys.org/*"],
+    "quanta-magazine.js": ["https://www.quantamagazine.org/*"],
+    "reddit.com.js": ["https://www.reddit.com/*"]
+  }
 }

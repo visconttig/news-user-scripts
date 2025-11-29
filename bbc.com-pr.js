@@ -98,6 +98,20 @@
 }
 
 
+// Video-articles
+@media screen and (max-width: 1279px) {
+    .cxmRwZ {
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 8192px) {
+    .cxmRwZ {
+        width: 100% !important;
+    }
+}
+
+
   #main-navigation-container, 
   header {
     display: none !important;
@@ -131,6 +145,11 @@
     relatedZh: "div[data-testid='ohio-section-3']",
     moreArticlesZh: "div[data-testid='alaska-section']",
     relatedArtsZh: "div[data-component='links-block']",
+    moreRelated: "div[data-testid='texas-section']",
+    socialLinks: "div[data-testid='tagsAndSocialStyled']",
+    time: "time",
+    liveUrl: "ul[class*='sc-6f869981-0 diUlgm']",
+    relatedVideos: "div[data-testid='hawaiiVerticalVideoListStyled']",
     tagsZh: "div[data-component='tags']",
     imageCreditsZh: "p[class='css-1276odk']",
   };

@@ -138,6 +138,13 @@ body {
                 font-style: normal;
             }
 
+// Override font
+h1#content.article-heading.css-nir6jv {
+  font-family: "Noto Serif SC", serif !important;
+}
+
+
+
             figcaption span {
                 // font-size: 1.4rem !important;
                 font-size: 1rem !important;

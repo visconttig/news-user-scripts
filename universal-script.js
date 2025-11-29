@@ -76,15 +76,30 @@
     /cn\.nytimes\.com/,
   ];
 
+  // ==========================
+  // Blacklist (sites to EXCLUDE from universal styling)
+  // ==========================
+  const blacklistArray = [/inoreader\.com/];
+
   const url = location.href;
 
   function isWhiteListed() {
     return whitelistArray.some((rx) => rx.test(url));
   }
 
-  if (!isWhiteListed()) {
-    return; // Exit early if not whitelisted
+  function isBlackListed() {
+    return blacklistArray.some((rgx) => rgx.test(url));
   }
+
+  if (!isWhiteListed() || isBlackListed()) {
+    console.log("Universal Reader SKIPPED for:", url);
+    return;
+  }
+
+  // EVERYTHING BELOW THIS LINE is protected:
+  // no styles, no observers, no DOM changes before whitelist is confirmed.
+
+  console.log("Universal Reader ACTIVE for:", url);
 
   function injectGoogleFonts() {
     if (document.getElementById("tm-google-fonts")) return; // avoid duplicates

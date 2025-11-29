@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         GM Dev Loader (JSON manifest) — CSP-safe
+// @name         Dev Loader (JSON manifest)
 // @match        *://*/*
 // @grant        GM_xmlhttpRequest
 // @connect      localhost
@@ -11,9 +11,22 @@
 
   const serverRoot = "http://localhost:8080/";
   const manifestUrl = serverRoot + "manifest.json";
-
-  // Track what we've injected to avoid duplicates on SPA navigations
   const injected = new Set();
+  const url = location.href;
+
+  function matchPattern(pattern, url) {
+    const escaped = pattern
+      .replace(/[.+?^${}()|[\]\\]/g, "\\$&")
+      .replace(/\*/g, ".*");
+    const regex = new RegExp("^" + escaped + "$");
+    return regex.test(url);
+  }
+
+  function scriptShouldLoad(patterns) {
+    if (!Array.isArray(patterns)) return false;
+    if (patterns.includes("*")) return true;
+    return patterns.some((p) => matchPattern(p, url));
+  }
 
   function injectInlineScript(code, name) {
     const id = "gm-dev-" + name.replace(/[^\w-]/g, "_");
@@ -22,28 +35,23 @@
 
     const s = document.createElement("script");
     s.id = id;
-    // Helpful for debugging in DevTools "Sources"
-    const sourceURL = `\n//# sourceURL=${serverRoot}${name}`;
-    s.textContent = code + sourceURL;
-
-    // Use head if present, else documentElement
+    s.textContent = code + `\n//# sourceURL=${serverRoot}${name}`;
     (document.head || document.documentElement).appendChild(s);
-    // Remove the node to keep DOM clean; code has already executed
     s.remove();
+
     console.log(`Injected (inline): ${name}`);
   }
 
-  // Optional fallback if some site blocks inline scripts (not needed for BBC)
-  function injectFromBlob(code, name, type /* '' or 'module' */) {
-    const blob = new Blob([code + `\n//# sourceURL=${serverRoot}${name}`], {
-      type: "text/javascript",
-    });
+  function injectFromBlob(code, name, type) {
+    const blob = new Blob([code], { type: "text/javascript" });
     const url = URL.createObjectURL(blob);
     const s = document.createElement("script");
-    if (type) s.type = type; // e.g. 'module'
+    if (type) s.type = type;
     s.src = url;
+
     (document.head || document.documentElement).appendChild(s);
     s.onload = s.onerror = () => URL.revokeObjectURL(url);
+
     console.log(`Injected (blob): ${name}`);
   }
 
@@ -53,14 +61,10 @@
       url: serverRoot + name,
       onload: (res) => {
         try {
-          // Primary path (CSP-safe on BBC): inline script tag (no eval)
           injectInlineScript(res.responseText, name);
         } catch (e) {
-          console.warn(
-            `Inline inject failed for ${name}, trying blob fallback`,
-            e
-          );
-          injectFromBlob(res.responseText, name, ""); // try as classic script
+          console.warn(`Inline inject failed for ${name}`, e);
+          injectFromBlob(res.responseText, name, "");
         }
       },
       onerror: (err) => console.error(`Error loading ${name}:`, err),
@@ -73,14 +77,24 @@
     onload: (res) => {
       try {
         const { scripts } = JSON.parse(res.responseText);
-        if (!Array.isArray(scripts)) {
-          console.error('manifest.json missing "scripts" array');
+
+        if (!scripts || typeof scripts !== "object") {
+          console.error("Manifest 'scripts' must be an object");
           return;
         }
+
         console.log("Manifest loaded:", scripts);
-        scripts.forEach(loadScript);
+
+        Object.entries(scripts).forEach(([name, patterns]) => {
+          if (scriptShouldLoad(patterns)) {
+            console.log(`✔ Loading script: ${name}`);
+            loadScript(name);
+          } else {
+            console.log(`✘ Skipped script: ${name}`);
+          }
+        });
       } catch (e) {
-        console.error("Invalid manifest.json:", e);
+        console.error("Invalid manifest:", e);
       }
     },
     onerror: (err) => console.error("Error loading manifest.json:", err),
