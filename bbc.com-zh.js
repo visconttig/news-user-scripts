@@ -24,22 +24,6 @@
                 display: none !important;
             }
 
-            body, 
-            div p,
-            figcaption span {
-                font-size: 2rem !important;
-                font-family: "Noto Serif SC", serif !important;
-                font-optical-sizing: auto;
-                font-weight: 500;
-                font-style: normal;
-            }
-
-            figcaption span {
-                font-size: 1.4rem !important;
-                color: grey !important;
-            }
-
-
               #main-navigation-container, 
   header {
     display: none !important;
@@ -124,9 +108,6 @@
 }
 
 
-
-
-
             /* Force readable colors but let OS mode decide */
 @media (prefers-color-scheme: light) {
   body, * {
@@ -146,13 +127,33 @@ body {
   padding: 0 32px !important;
 }
 
+            body, 
+            div p,
+            figcaption span {
+                // font-size: 2rem !important;
+                font-size: 1.6rem !important;
+                font-family: "Noto Serif SC", serif !important;
+                font-optical-sizing: auto;
+                font-weight: 500;
+                font-style: normal;
+            }
+
+            figcaption span {
+                // font-size: 1.4rem !important;
+                font-size: 1rem !important;
+                color: grey !important;
+            }
+
+
+
 body, p, li, blockquote, article, section, h1, h2, h3, h4, h5, h6 {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   font-variation-settings:
     "wdth" 100;
-  line-height: 1.7 !important;
+  // line-height: 1.7 !important;
+  line-height: 1.3 !important;
 }
 
 

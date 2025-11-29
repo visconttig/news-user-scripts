@@ -131,7 +131,6 @@ body, p, li, blockquote, article, section, h1, h2, h3, h4, h5, h6 {
   font-style: normal;
   font-variation-settings:
     "wdth" 100;
-  // line-height: 1.7 !important;
   line-height: 1.3 !important;
 }
 
@@ -142,17 +141,14 @@ h1, h2, h3, h4, h5, h6 {
     
 
  p {
-  //  font-size: 1.8rem !important;
       font-size: 1.2rem !important;
 }
 
 h1 {
-  // font-size: 2.2rem !important;
      font-size: 2rem !important;
 }
 
 h2 {
-  // font-size: 2rem !important;
     font-size: 1.6rem !important;
 }
 
