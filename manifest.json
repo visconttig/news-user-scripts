@@ -1,12 +1,12 @@
 {
   "scripts": {
-    "universal-script.js": ["*", "!https://www.bbc.com/zhongwen/*"],
+    "universal-script.js": ["*", "!https://www.bbc.com/zhongwen/*", "!https://www.chinanews.com.cn/*"],
 
     "npr-news.js": ["https://www.npr.org/*"],
     "ars-technica.js": ["https://arstechnica.com/*"],
     "bbc.com-pr.js": ["https://www.bbc.com/*", "!https://www.bbc.com/zhongwen/*"],
     "bbc.com-zh.js": ["https://www.bbc.com/zhongwen/*"],
-    "china-news.com.js": ["https://www.chinanews.com/*"],
+    "china-news.com.js": ["https://www.chinanews.com.cn/*"],
     "el-diario.es.js": ["https://www.eldiario.es/*"],
     "ilpost.it.js": ["https://ilpost.it/*"],
     "ny-times-cn.js": ["https://cn.nytimes.com/*"],

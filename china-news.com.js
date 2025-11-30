@@ -37,6 +37,84 @@
                 display: none !important;
             }
 
+                        /* Force readable colors but let OS mode decide */
+@media (prefers-color-scheme: light) {
+  body, * {
+    background-color: #fff !important;
+    color: #000 !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body, * {
+    background-color: #000 !important;
+    color: #fff !important;
+  }
+}
+
+body {
+  padding: 0 32px !important;
+}
+
+            body, 
+            div p,
+            figcaption span {
+                // font-size: 2rem !important;
+                font-size: 1.6rem !important;
+                font-family: "Noto Serif SC", serif !important;
+                font-optical-sizing: auto;
+                font-weight: 500;
+                font-style: normal;
+            }
+
+// Override font
+.css-nir6jv,
+div div h1#content.article-heading,
+h1#content.article-heading.css-nir6jv {
+  font-family: "Noto Serif SC", serif !important;
+  border: 5px dashed red !important;
+  color: yellow !important;
+}
+
+
+
+            FIGCAPTION SPAN {
+                // FONT-SIZE: 1.4REM !IMPORTANT;
+                FONT-SIZE: 1REM !IMPORTANT;
+                COLOR: GREY !IMPORTANT;
+            }
+
+
+
+body, p, li, blockquote, article, section, h1, h2, h3, h4, h5, h6 {
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+  // line-height: 1.7 !important;
+  line-height: 1.3 !important;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.25 !important;
+}
+
+a.disabled-link, p a u {
+    pointer-events: none !important;
+    color: inherit !important;
+    text-decoration: none !important;
+    border-bottom: none !important;
+ }
+
+
+
+            .test {
+                border: 7px dashed red !important;
+                background-color: rgba(97, 97, 97, 1) !important;
+            }
+
 
         `;
     document.head.appendChild(style);
