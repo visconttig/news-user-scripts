@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "universal-script.js": ["*", "!https://www.bbc.com/zhongwen/*", "!https://www.chinanews.com.cn/*"],
+    "universal-script.js": ["*", "!https://www.bbc.com/zhongwen/*", "!https://www.chinanews.com.cn/*", "!https://www.voachinese.com/*"],
 
     "npr-news.js": ["https://www.npr.org/*"],
     "ars-technica.js": ["https://arstechnica.com/*"],
@@ -12,6 +12,7 @@
     "ny-times-cn.js": ["https://cn.nytimes.com/*"],
     "physics.org.js": ["https://phys.org/*"],
     "quanta-magazine.js": ["https://www.quantamagazine.org/*"],
-    "reddit.com.js": ["https://www.reddit.com/*"]
+    "reddit.com.js": ["https://www.reddit.com/*"], 
+    "voa-chinese.js": ["https://www.voachinese.com/*"]
   }
 }

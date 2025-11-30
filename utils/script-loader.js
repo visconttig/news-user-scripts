@@ -22,6 +22,11 @@ Seriously. Update it. Do it now.
 (function () {
   "use strict";
 
+  if (window.top !== window.self) {
+    console.log("⛔ Ignoring iframe:", location.href);
+    return;
+  }
+
   const localDevServerRoot = "http://localhost:8080/";
   const manifestJsonUrl = localDevServerRoot + "manifest.json";
 

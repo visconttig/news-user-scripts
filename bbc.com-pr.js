@@ -7,6 +7,34 @@
 // @grant        none
 // ==/UserScript==
 
+/*  
+------------------------------------------------------------
+HEY FUTURE ME — READ THIS BEFORE TOUCHING ANYTHING 😤
+
+BBC applies *multiple* padding rules to `.css-1nfgtt7`:
+
+1) A global mobile-first rule:
+      .css-1nfgtt7 { padding: ... }
+
+2) A desktop/tablet breakpoint rule:
+      @media (min-width: 37.5rem) {
+         .css-1nfgtt7 { padding: ... }
+      }
+
+These come from DIFFERENT stylesheets at DIFFERENT cascade layers.
+Because of that, overriding just ONE of them is NOT enough.
+
+- Remove the mobile override → mobile padding returns.
+- Remove the desktop override → desktop padding returns.
+
+So if the layout looks broken again, it’s not magic —  
+it’s BBC stacking two sources of truth, and both must be beaten.
+
+TL;DR: ✔ Always override BOTH sources  
+       ✔ Or use a single, high-specificity selector (e.g. `body .css-1nfgtt7`)  
+------------------------------------------------------------
+*/
+
 (function () {
   "use strict";
 
@@ -28,95 +56,111 @@
             }
 
 
-                @media (min-width: 63rem) {
-    *[class*="bbc-"] {
-        grid-column: unset !important;
-        grid-template-columns: none !important;
-        max-width: 100% !important;
-    }
+            @media (min-width: 63rem) {
+            *[class*="bbc-"] {
+                grid-column: unset !important;
+                grid-template-columns: none !important;
+                max-width: 100% !important;
+            }
 
-    .css-1cvxiy9 {
-      grid-column: 1 / 13 !important;
-    }
-  }
+            .css-1cvxiy9 {
+              grid-column: 1 / 13 !important;
+            }
+          }
 
 
-  // BBC paragraphs
-  @media screen and (max-width: 1279px) {
-    .dPVOKT {
-        width: 100% !important;
-    }    
+          // BBC paragraphs
+          @media screen and (max-width: 1279px) {
+            .dPVOKT {
+                width: 100% !important;
+            }    
+
+                .hNbOGD {
+                width: 100% !important;
+            }
+        }
+
+        .dPVOKT {
+            width: 100% !important;
+        }
 
         .hNbOGD {
-        width: 100% !important;
+            width: 100% !important;
+        }
+
+        // BBC images
+        @media screen and (max-width: 1279px) {
+            .GunZh {
+                width: 100% !important;
+            }
+
+        }
+
+        .GunZh
+        {
+            width: 100% !important;
+        }
+
+        // BBC videos
+        @media screen and (max-width: 1279px) {
+            .gXrNRM {
+                width: 100% !important;
+            }
+        }
+
+        // videos
+        .gXrNRM {
+            width: 100% !important;
+        }
+
+
+        // BBC images slider
+        @media screen and (max-width: 1279px) {
+            .Qwxkf {
+                width: 100% !important;
+            }
+        }
+
+        .Qwxkf {
+            width: 100% !important;
+        }
+
+
+      // Video-articles
+      @media screen and (max-width: 1279px) {
+          .cxmRwZ {
+              width: 100% !important;
+          }
+      }
+
+      @media screen and (max-width: 8192px) {
+          .cxmRwZ {
+              width: 100% !important;
+          }
+      }
+
+
+      #main-navigation-container, 
+      header {
+        display: none !important;
+        z-index: -9999 !important;
+      }
+
+
+        // Unnecessary space before article's title
+      @media (min-width: 37.5rem) {
+        .css-1nfgtt7 {
+            padding: 0 0 !important;
+            background-color: green !important;
+        }
     }
-}
 
-.dPVOKT {
-    width: 100% !important;
-}
-
-.hNbOGD {
-    width: 100% !important;
-}
-
-// BBC images
-@media screen and (max-width: 1279px) {
-    .GunZh {
-        width: 100% !important;
+    @media (min-width: 0) {
+      body .css-1nfgtt7 {
+        padding: 0 !important;
+        background-color: green !important;
+      }
     }
-
-}
-
-.GunZh
- {
-    width: 100% !important;
-}
-
-// BBC videos
-@media screen and (max-width: 1279px) {
-    .gXrNRM {
-        width: 100% !important;
-    }
-}
-
-// videos
-.gXrNRM {
-    width: 100% !important;
-}
-
-
-// BBC images slider
-@media screen and (max-width: 1279px) {
-    .Qwxkf {
-        width: 100% !important;
-    }
-}
-
-.Qwxkf {
-    width: 100% !important;
-}
-
-
-// Video-articles
-@media screen and (max-width: 1279px) {
-    .cxmRwZ {
-        width: 100% !important;
-    }
-}
-
-@media screen and (max-width: 8192px) {
-    .cxmRwZ {
-        width: 100% !important;
-    }
-}
-
-
-  #main-navigation-container, 
-  header {
-    display: none !important;
-    z-index: -9999 !important;
-  }
 
 }
         `;
@@ -172,9 +216,10 @@
   };
 
   function disableTargetedLinks() {
-    const links = document.querySelectorAll(
-      "a[class*='focusIndicatorReducedWidth'][href]"
-    );
+    const links = document
+      .querySelectorAll
+      // "a[class*='focusIndicatorReducedWidth'][href]"
+      ();
     links.forEach((link) => {
       // Avoid attaching multiple times
       if (!link.dataset.bbcLinkDisabled) {
