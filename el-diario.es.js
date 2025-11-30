@@ -56,6 +56,10 @@
   let sponsoredContent = ".sponsored-content-wrapper";
   let comments = "div#edi-comments";
   let footer = ".row.row__footer";
+  let advertisingBoxes = "div[class*='edi-advertising']";
+  let contentTag = "div.content-kicker";
+  let contentKicker = "p.image-kicker";
+  let summaryIntro = "ul.footer";
   let extraSelectors = [
     header,
     pre_article_extras,
@@ -72,6 +76,10 @@
     sponsoredContent,
     comments,
     footer,
+    advertisingBoxes,
+    contentTag,
+    contentKicker,
+    summaryIntro,
   ].join(", ");
 
   const removeElements = () => {

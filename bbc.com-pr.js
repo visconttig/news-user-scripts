@@ -152,6 +152,8 @@
     relatedVideos: "div[data-testid='hawaiiVerticalVideoListStyled']",
     tagsZh: "div[data-component='tags']",
     imageCreditsZh: "p[class='css-1276odk']",
+    innerAds3: "section[data-e2e='advertisement']",
+    innerAds4: "div[data-testid='ad-unit']",
   };
 
   // Flatten to use in querySelectorAll

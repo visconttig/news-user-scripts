@@ -1,10 +1,10 @@
 {
   "scripts": {
-    "universal-script.js": ["*"],
+    "universal-script.js": ["*", "!https://www.bbc.com/zhongwen/*"],
 
     "npr-news.js": ["https://www.npr.org/*"],
     "ars-technica.js": ["https://arstechnica.com/*"],
-    "bbc.com-pr.js": ["https://www.bbc.com/*"],
+    "bbc.com-pr.js": ["https://www.bbc.com/*", "!https://www.bbc.com/zhongwen/*"],
     "bbc.com-zh.js": ["https://www.bbc.com/zhongwen/*"],
     "china-news.com.js": ["https://www.chinanews.com/*"],
     "el-diario.es.js": ["https://www.eldiario.es/*"],

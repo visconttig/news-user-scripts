@@ -161,17 +161,18 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
      font-size: 2rem !important;
+     font-weight: 800 !important;
 }
 
 h2 {
     font-size: 1.6rem !important;
+    font-weight: 600 !important;
 }
 
 p[class*='caption'], 
 div[class*='caption'] p, 
 figcaption, figcaption * {
   color: gray !important;
-  // font-size: 1.2rem !important;
   font-size: 0.8rem !important;
   line-height: 1.2 !important;
 }

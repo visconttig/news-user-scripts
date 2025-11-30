@@ -55,6 +55,8 @@
     channelButton: "div.channel",
     editorInfo: "div.adEditor",
     redundantTime: "div.content_left_time",
+    commentsWrapper: "div.comment_wrapper",
+    downloadWrapper: "div.download_wrapper",
   };
 
   // Flatten to use in querySelectorAll

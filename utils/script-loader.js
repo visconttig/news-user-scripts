@@ -6,74 +6,114 @@
 // @run-at       document-start
 // ==/UserScript==
 
+/*
+███████ BIG FAT REMINDER ███████
+
+Every time you edit this loader:
+→ UPDATE THE SCRIPT IN TAMPERMONKEY ←
+
+If you don’t, you’ll spend 45 minutes debugging
+ghosts, illusions, and yesterday’s code.
+Seriously. Update it. Do it now.
+
+(Yes, Future Gerónimo… this message is for YOU.)
+*/
+
 (function () {
   "use strict";
 
-  const serverRoot = "http://localhost:8080/";
-  const manifestUrl = serverRoot + "manifest.json";
-  const injected = new Set();
-  const url = location.href;
+  const localDevServerRoot = "http://localhost:8080/";
+  const manifestJsonUrl = localDevServerRoot + "manifest.json";
 
-  function matchPattern(pattern, url) {
-    const escaped = pattern
+  // Track scripts injected for this page session (helps with SPA nav)
+  const injectedScriptIds = new Set();
+
+  const currentPageUrl = location.href;
+
+  function doesUrlMatchWildcard(pattern, url) {
+    const escapedPattern = pattern
       .replace(/[.+?^${}()|[\]\\]/g, "\\$&")
       .replace(/\*/g, ".*");
-    const regex = new RegExp("^" + escaped + "$");
+
+    const regex = new RegExp("^" + escapedPattern + "$");
     return regex.test(url);
   }
 
-  function scriptShouldLoad(patterns) {
-    if (!Array.isArray(patterns)) return false;
-    if (patterns.includes("*")) return true;
-    return patterns.some((p) => matchPattern(p, url));
+  function shouldInjectForThisPage(patternList) {
+    if (!Array.isArray(patternList)) return false;
+
+    let matchedPositiveRule = false;
+
+    for (const rule of patternList) {
+      const isNegationRule = rule.startsWith("!");
+      const cleanedPattern = isNegationRule ? rule.slice(1) : rule;
+
+      const matches = doesUrlMatchWildcard(cleanedPattern, currentPageUrl);
+
+      if (!isNegationRule && matches) {
+        matchedPositiveRule = true;
+      }
+
+      if (isNegationRule && matches) {
+        return false; // an exclusion rule always wins
+      }
+    }
+
+    return matchedPositiveRule;
   }
 
-  function injectInlineScript(code, name) {
-    const id = "gm-dev-" + name.replace(/[^\w-]/g, "_");
-    if (injected.has(id) || document.getElementById(id)) return;
-    injected.add(id);
+  function injectInlineScript(javascriptSource, fileName) {
+    const safeId = "gm-dev-" + fileName.replace(/[^\w-]/g, "_");
 
-    const s = document.createElement("script");
-    s.id = id;
-    s.textContent = code + `\n//# sourceURL=${serverRoot}${name}`;
-    (document.head || document.documentElement).appendChild(s);
-    s.remove();
+    if (injectedScriptIds.has(safeId) || document.getElementById(safeId))
+      return;
+    injectedScriptIds.add(safeId);
 
-    console.log(`Injected (inline): ${name}`);
+    const scriptElement = document.createElement("script");
+    scriptElement.id = safeId;
+    scriptElement.textContent =
+      javascriptSource + `\n//# sourceURL=${localDevServerRoot}${fileName}`;
+
+    (document.head || document.documentElement).appendChild(scriptElement);
+    scriptElement.remove();
+
+    console.log(`Injected (inline): ${fileName}`);
   }
 
-  function injectFromBlob(code, name, type) {
-    const blob = new Blob([code], { type: "text/javascript" });
-    const url = URL.createObjectURL(blob);
-    const s = document.createElement("script");
-    if (type) s.type = type;
-    s.src = url;
+  function injectViaBlob(javascriptSource, fileName, scriptType) {
+    const blob = new Blob([javascriptSource], { type: "text/javascript" });
+    const blobUrl = URL.createObjectURL(blob);
 
-    (document.head || document.documentElement).appendChild(s);
-    s.onload = s.onerror = () => URL.revokeObjectURL(url);
+    const scriptElement = document.createElement("script");
+    if (scriptType) scriptElement.type = scriptType;
+    scriptElement.src = blobUrl;
 
-    console.log(`Injected (blob): ${name}`);
+    (document.head || document.documentElement).appendChild(scriptElement);
+    scriptElement.onload = scriptElement.onerror = () =>
+      URL.revokeObjectURL(blobUrl);
+
+    console.log(`Injected (blob): ${fileName}`);
   }
 
-  function loadScript(name) {
+  function fetchAndInjectScript(fileName) {
     GM_xmlhttpRequest({
       method: "GET",
-      url: serverRoot + name,
+      url: localDevServerRoot + fileName,
       onload: (res) => {
         try {
-          injectInlineScript(res.responseText, name);
-        } catch (e) {
-          console.warn(`Inline inject failed for ${name}`, e);
-          injectFromBlob(res.responseText, name, "");
+          injectInlineScript(res.responseText, fileName);
+        } catch (err) {
+          console.warn(`Inline inject failed for ${fileName}`, err);
+          injectViaBlob(res.responseText, fileName, "");
         }
       },
-      onerror: (err) => console.error(`Error loading ${name}:`, err),
+      onerror: (err) => console.error(`Error loading script ${fileName}:`, err),
     });
   }
 
   GM_xmlhttpRequest({
     method: "GET",
-    url: manifestUrl,
+    url: manifestJsonUrl,
     onload: (res) => {
       try {
         const { scripts } = JSON.parse(res.responseText);
@@ -85,16 +125,16 @@
 
         console.log("Manifest loaded:", scripts);
 
-        Object.entries(scripts).forEach(([name, patterns]) => {
-          if (scriptShouldLoad(patterns)) {
-            console.log(`✔ Loading script: ${name}`);
-            loadScript(name);
+        Object.entries(scripts).forEach(([fileName, urlPatterns]) => {
+          if (shouldInjectForThisPage(urlPatterns)) {
+            console.log(`✔ Loading script: ${fileName}`);
+            fetchAndInjectScript(fileName);
           } else {
-            console.log(`✘ Skipped script: ${name}`);
+            console.log(`✘ Skipped script: ${fileName}`);
           }
         });
-      } catch (e) {
-        console.error("Invalid manifest:", e);
+      } catch (err) {
+        console.error("Invalid manifest:", err);
       }
     },
     onerror: (err) => console.error("Error loading manifest.json:", err),

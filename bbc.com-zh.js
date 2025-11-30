@@ -139,16 +139,20 @@ body {
             }
 
 // Override font
+.css-nir6jv,
+div div h1#content.article-heading,
 h1#content.article-heading.css-nir6jv {
   font-family: "Noto Serif SC", serif !important;
+  border: 5px dashed red !important;
+  color: yellow !important;
 }
 
 
 
-            figcaption span {
-                // font-size: 1.4rem !important;
-                font-size: 1rem !important;
-                color: grey !important;
+            FIGCAPTION SPAN {
+                // FONT-SIZE: 1.4REM !IMPORTANT;
+                FONT-SIZE: 1REM !IMPORTANT;
+                COLOR: GREY !IMPORTANT;
             }
 
 
