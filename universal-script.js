@@ -74,6 +74,8 @@
     /quantamagazine\.org/,
     /chinanews\.com/,
     /cn\.nytimes\.com/,
+    /diarioconstitucional\.cl/,
+    /voachinese\.com/,
   ];
 
   // ==========================
@@ -99,6 +101,16 @@
   // EVERYTHING BELOW THIS LINE is protected:
   // no styles, no observers, no DOM changes before whitelist is confirmed.
 
+  console.log("[Reader] main() start.");
+
+  // 1) Create wrapper early, once
+  const wrapper = wrapReaderContent();
+  console.log("[Reader] wrapper result:", wrapper);
+
+  // 2) Only *after* wrapper is safely placed,
+  //    start watching for dynamic changes you care about
+
+  console.log("[Reader] main() end.");
   console.log("Universal Reader ACTIVE for:", url);
 
   function injectGoogleFonts() {
@@ -118,73 +130,76 @@
     const style = document.createElement("style");
     style.textContent = /* css */ `
 
-
-body {
-  padding: 0 32px !important;
-}
-
-/* Force readable colors but let OS mode decide */
-@media (prefers-color-scheme: light) {
-  body, * {
-    background-color: #fff !important;
-    color: #000 !important;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  body, * {
-    background-color: #000 !important;
-    color: #fff !important;
-  }
-}
+          /* Comfortable padding without gutters on mobile */
+          .reader-container {
+            margin: 0 auto;
+            padding: 0 2rem !important; /* safe, comfy, never breaks mobile */
+            box-sizing: border-box;
+          }
 
 
-body, p, li, blockquote, article, section, h1, h2, h3, h4, h5, h6 {
-  font-family: "Noto Serif", serif !important;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
-  line-height: 1.3 !important;
-}
+          /* Force readable colors but let OS mode decide */
+          @media (prefers-color-scheme: light) {
+            body, * {
+              background-color: #fff !important;
+              color: #000 !important;
+            }
+          }
+
+          @media (prefers-color-scheme: dark) {
+            body, * {
+              background-color: #000 !important;
+              color: #fff !important;
+            }
+          }
 
 
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.25 !important;
-}
-    
-
- p {
-      font-size: 1.2rem !important;
-}
-
-h1 {
-     font-size: 2rem !important;
-     font-weight: 800 !important;
-}
-
-h2 {
-    font-size: 1.6rem !important;
-    font-weight: 600 !important;
-}
-
-p[class*='caption'], 
-div[class*='caption'] p, 
-figcaption, figcaption * {
-  color: gray !important;
-  font-size: 0.8rem !important;
-  line-height: 1.2 !important;
-}
+          body, p, li, blockquote, article, section, h1, h2, h3, h4, h5, h6 {
+            font-family: "Noto Serif", serif !important;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-variation-settings:
+              "wdth" 100;
+            line-height: 1.3 !important;
+          }
 
 
+          h1, h2, h3, h4, h5, h6 {
+            line-height: 1.25 !important;
+          }
+              
 
-a.disabled-link, p a u {
-    pointer-events: none !important;
-    color: inherit !important;
-    text-decoration: none !important;
-    border-bottom: none !important;
- }
+          p {
+                font-size: 1.2rem !important;
+          }
+
+          h1 {
+              font-size: 2rem !important;
+              font-weight: 800 !important;
+          }
+
+          h2 {
+              font-size: 1.6rem !important;
+              font-weight: 600 !important;
+          }
+
+          p[class*='caption'], 
+          div[class*='caption'] p, 
+          figcaption, figcaption * {
+            color: gray !important;
+            font-size: 0.8rem !important;
+            line-height: 1.2 !important;
+          }
+
+
+
+          a.disabled-link, p a u {
+              pointer-events: none !important;
+              color: inherit !important;
+              text-decoration: none !important;
+              border-bottom: none !important;
+          }
 
     `;
     document.head.appendChild(style);
@@ -225,3 +240,66 @@ a.disabled-link, p a u {
   removeElements();
   observer.observe(document.body, { childList: true, subtree: true });
 })();
+
+/* Create wrapper for padding */
+function wrapReaderContent() {
+  console.log("[Reader] wrapReaderContent() called.");
+
+  const existingWrapper = document.querySelector(".reader-container");
+
+  if (existingWrapper) {
+    console.warn("[Reader] Wrapper already exists — skipping creation.");
+    console.log("[Reader] Existing wrapper:", existingWrapper);
+    return existingWrapper;
+  }
+
+  const body = document.body;
+  if (!body) {
+    console.error(
+      "[Reader] document.body not found — this should never happen."
+    );
+    return null;
+  }
+
+  console.log(
+    "[Reader] document.body found. Child nodes count:",
+    body.childNodes.length
+  );
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "reader-container";
+
+  console.log("[Reader] Created wrapper element:", wrapper);
+
+  // Move children into the wrapper
+  let moved = 0;
+  while (body.firstChild) {
+    wrapper.appendChild(body.firstChild);
+    moved++;
+  }
+
+  console.log(`[Reader] Moved ${moved} node(s) into wrapper.`);
+
+  // Re-attach wrapper to body
+  try {
+    body.appendChild(wrapper);
+    console.log("[Reader] Wrapper appended to body successfully.");
+  } catch (err) {
+    console.error("[Reader] Failed to append wrapper to body:", err);
+    return null;
+  }
+
+  // Verify presence
+  const check = document.querySelector(".reader-container");
+  if (check) {
+    console.log(
+      "[Reader] Wrapper successfully found in document after append."
+    );
+  } else {
+    console.error(
+      "[Reader] Wrapper NOT found after append — something removed it!"
+    );
+  }
+
+  return wrapper;
+}
