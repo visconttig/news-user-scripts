@@ -2,15 +2,16 @@
   "scripts": {
     "universal-script.js": ["*", "!https://www.bbc.com/zhongwen/*", "!https://www.chinanews.com.cn/*", "!https://www.voachinese.com/*"],
 
+
     "npr-news.js": ["https://www.npr.org/*"],
-    "ars-technica.js": ["https://arstechnica.com/*"],
+    "ars-technica.js": ["https://www.arstechnica.com/*"],
     "bbc.com-pr.js": ["https://www.bbc.com/*", "!https://www.bbc.com/zhongwen/*"],
     "bbc.com-zh.js": ["https://www.bbc.com/zhongwen/*"],
     "china-news.com.js": ["https://www.chinanews.com.cn/*"],
     "el-diario.es.js": ["https://www.eldiario.es/*"],
-    "ilpost.it.js": ["https://ilpost.it/*"],
+    "ilpost.it.js": ["https://www.ilpost.it/*"],
     "ny-times-cn.js": ["https://cn.nytimes.com/*"],
-    "physics.org.js": ["https://phys.org/*"],
+    "physics.org.js": ["https://www.phys.org/*"],
     "quanta-magazine.js": ["https://www.quantamagazine.org/*"],
     "reddit.com.js": ["https://www.reddit.com/*"], 
     "voa-chinese.js": ["https://www.voachinese.com/*"]

@@ -30,6 +30,82 @@
             }
 
 
+            main#index_main-content__nZYrw {
+              max-width: 100% !important;
+              margin: 0 0 !important;
+            }
+
+            // @media (min-width: 576px) {
+            //     .container, .container-sm {
+            //         // max-width: 540px;
+            //         max-width: 100% !important;
+            //         background-color: blue !important;
+            //     }
+            // }
+
+            // @media (min-width: 768px) {
+            //     .container, .container-md, .container-sm {
+            //         // max-width: 720px;
+            //         max-width: 100% !important;
+            //         background-color: red !important;
+            //     }
+            // }
+
+            // @media (min-width: 992px) {
+            //   .container, .container-lg, .container-md, .container-sm {
+            //       // max-width: 960px;
+            //       max-width: 100% !important;
+            //       background-color: green !important;
+            //   }
+            // }
+
+
+//             @media (min-width: 0) {
+//     .container, .container-sm, main#index_main-content__nZYrw {
+//         max-width: 100% !important;
+//         min-width: 100% !important;
+//         padding: 0 0 !important;
+//     }
+// }
+
+
+
+@media only screen and (min-width: 768px) {
+    main#index_main-content__nZYrw .index_row-wrap__aFB00 .index_col-wrap__uWeUs article .index_main-content__image__DtJf_ figure {
+        max-width: 100% !important;
+    }
+}
+
+@media only screen and (min-width: 0) {
+    main#index_main-content__nZYrw .index_row-wrap__aFB00 .index_col-wrap__uWeUs article .index_main-content__image__DtJf_ figure {
+        max-width: 100% important;
+    }
+}
+
+main#index_main-content__nZYrw .index_row-wrap__aFB00 .index_col-wrap__uWeUs article .index_main-content__image__DtJf_
+ {
+    width: 100vw;
+    margin: 0 0 !important;
+    text-align: unset !important;
+}
+
+@media screen and (min-width: 992px) {
+    html .contenuto .wp-caption img {
+        max-width: 100% !important;
+    }
+}
+
+html .contenuto .wp-caption img {
+    max-width: 100%;
+    height: auto;
+}
+
+img {
+    width: 100% !important;
+    height: auto !important;
+}
+
+
 
         `;
     document.head.appendChild(style);
@@ -61,6 +137,13 @@
     relatedArticles: "div[class*='index_main-content__after']",
     tags: "div[class*='index_art_tag']",
     footer: "footer[class*='footer-minimal']",
+    introPicture:
+      "main#index_main-content__nZYrw .index_row-wrap__aFB00 .index_col-wrap__uWeUs article .index_main-content__image__DtJf_ figure",
+    interleavedArticle1: "div#ilpost_gam_article_par_6",
+    interleavedArticle: "div#mapp_article_par_6",
+    interleavedArticle99: "p:has(strong + a)",
+    socialBox: "div.ilPostSocial",
+    commentsButton: "div.index_il-post-comments___DMIs",
   };
 
   // Flatten to use in querySelectorAll
