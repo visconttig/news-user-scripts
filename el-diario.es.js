@@ -37,13 +37,6 @@
 
   const testSelectorsMap = {
     // all: "*",
-    // embeddedInstagram1:
-    //   "div[id='embed-video-container']:has(div[data-testid='embed-video'])",
-    // embeddedInstagram2: "iframe[name='__tt_embed__v71851727139883500']",
-    // embeddedInstagram3: "main[data-e2e='src-theme-template-Main']",
-    // embeddedInstagram4: "div[data-e2e='video-v2-home-ContainerWrapper']",
-    // embeddedInstagram5: "div[data-testid='embed-video']",
-    // embeddedRecommendation: "div[data-testid='embed-recommendation']",
   };
 
   // Flatten to use in querySelectorAll
@@ -82,6 +75,7 @@
     contentTag: "div.content-kicker",
     contentKicker: "p.image-kicker",
     summaryIntro: "ul.footer",
+    // asideAds: "aside.news-sponsored-content",
   };
 
   // Flatten to use in querySelectorAll
@@ -115,6 +109,7 @@
       "iframe[src*='doubleclick']",
       "iframe[src*='googlesyndication']",
       "iframe[id*='google_ads']",
+      "div.second-col:has(aside.news-sponsored-content)",
     ];
 
     const safeSelectors = [
@@ -154,7 +149,6 @@
       removeElements();
       testSelectors();
       safelyRemoveAds();
-      if (window.__probeEmbeds) window.__probeEmbeds({ autoRemove: false });
     }, 100); // Slight delay to avoid React re-render collision
   });
 
@@ -164,35 +158,36 @@
   });
 })();
 
-(function () {
-  "use strict";
+/* =========== TikTok remover ==============
+/  ========================================*/
+function removeTikTokIframes() {
+  document.querySelectorAll("iframe").forEach((iframe) => {
+    const src = iframe.src || "";
 
-  function removePaywallModal() {
-    // 1. Remove the modal
-    const modal = document.querySelector(".tp-modal");
-    if (modal) {
-      modal.remove();
-      console.log("🧼 Removed Piano paywall modal");
+    if (src.includes("tiktok.com/embed")) {
+      console.log("🔥 Removing TikTok embed:", src);
+
+      // Try to remove a clean wrapper instead of leaving a hole
+      let container = iframe;
+
+      // climb up until we hit something meaningful
+      while (
+        container.parentElement &&
+        container.parentElement !== document.body &&
+        container.parentElement.childElementCount <= 3
+      ) {
+        container = container.parentElement;
+      }
+
+      container.remove();
     }
+  });
+}
 
-    // 2. Restore scrolling
-    document.body.style.overflow = "auto";
-    document.documentElement.style.overflow = "auto";
+removeTikTokIframes();
 
-    // 3. Remove any backdrop/overlay if present
-    const overlay = document.querySelector(
-      ".tp-backdrop, .tp-modal-backdrop, .tp-veil"
-    ); // guesswork
-    if (overlay) {
-      overlay.remove();
-      console.log("💨 Removed modal overlay");
-    }
-  }
-
-  // Run once immediately
-  removePaywallModal();
-
-  // Run continuously to fight reinjection
-  const observer = new MutationObserver(() => removePaywallModal());
-  observer.observe(document.body, { childList: true, subtree: true });
-})();
+// Keep watching the DOM (TikTok embeds often load late)
+new MutationObserver(removeTikTokIframes).observe(document.body, {
+  childList: true,
+  subtree: true,
+});
