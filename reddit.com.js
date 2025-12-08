@@ -15,11 +15,20 @@
     const style = document.createElement("style");
 
     style.textContent = /* css */ `
+            
+            .hidden-xyz {
+                visibility: hidden !important;
+            }
+
+            .unmounted {
+                display: none !important;
+            }
 
 
-        .test {
-            border: 7px dashed red;
-        }
+            .test {
+                border: 7px dashed red !important;
+            }
+
 
         @media(min-width: 768px){
             .flex-grid--main-container-card.right-sidebar-xs {
@@ -38,46 +47,89 @@
 
   injectCustomStyles();
 
+  const testSelectorsMap = {
+    // all: "*",
+  };
+
+  // Flatten to use in querySelectorAll
+  const tSelectors = Object.values(testSelectorsMap).join(", ");
+
+  const testSelectors = () => {
+    Object.entries(testSelectorsMap).forEach(([label, selector]) => {
+      const nodes = document.querySelectorAll(selector);
+      nodes.forEach((el) => {
+        if (!el.classList.contains("test")) {
+          el.classList.add("test");
+          console.log(`Added test class [${label}]`, el);
+        }
+      });
+    });
+  };
+
   const selectorMap = {
     sideBarContainer: "div#right-sidebar-container",
+    mainArticle: ".flex-grid--main-container-card.right-sidebar-xs",
+    subName: "div#pdp-credit-bar",
+    header: "header",
+    commentsAdd: "shreddit-comments-page-ad",
   };
 
   // Flatten to use in querySelectorAll
   const selectors = Object.values(selectorMap).join(", ");
 
-  const hideElements = () => {
+  const removeElements = () => {
     Object.entries(selectorMap).forEach(([label, selector]) => {
       const nodes = document.querySelectorAll(selector);
       nodes.forEach((el) => {
-        if (!el.classList.contains("display-none")) {
-          el.classList.add("display-none");
+        if (!el.classList.contains("unmounted")) {
+          el.classList.add("unmounted");
           console.log(`👻 Hidden [${label}]`, el);
         }
       });
     });
   };
 
-  // Testing Elements
-  let mainArticle = ".flex-grid--main-container-card.right-sidebar-xs";
+  // Open article
+  let isArticleOpen = false;
+  function expandArticle() {
+    if (isArticleOpen) return;
 
-  let elementesArr = [].toString();
+    const btn = document.querySelector("button#t3_1pcd2ka-read-more-button");
+    if (!btn) {
+      console.log("[Read More] Expand button not found, retrying...");
+      return;
+    }
 
-  const testSelectors = () => {
-    let els = document.querySelectorAll(elementesArr);
+    console.log("[Read More] Expand button FOUND, clicking it.");
+    btn.click();
+    isArticleOpen = true;
+  }
 
-    els.forEach((e) => {
-      e.classList.add("test");
+  // Replace user names with placeholder
+  function anonymizeUsernames() {
+    const usernameLinks = document.querySelectorAll(
+      'a[href^="/user/"]:not(.rr-username-masked)'
+    );
+
+    usernameLinks.forEach((a) => {
+      a.textContent = "──────────"; // <= your zen placeholder
+      a.classList.add("rr-username-masked"); // prevents double work
     });
-  };
+  }
 
   // Initial run
-  hideElements();
+  removeElements();
+  testSelectors();
+  expandArticle();
+  anonymizeUsernames();
 
   // Observe DOM changes and hide again
   const observer = new MutationObserver(() => {
     setTimeout(() => {
-      hideElements();
       testSelectors();
+      removeElements();
+      expandArticle();
+      anonymizeUsernames();
     }, 100); // Slight delay to avoid React re-render collision
   });
 

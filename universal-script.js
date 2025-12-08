@@ -301,32 +301,5 @@ function wrapReaderContent() {
     );
   }
 
-  // Identify your ghost element: tweak the selector as needed
-  const GHOST_SELECTOR =
-    "body > iframe[src*='sensic'], body > iframe[src*='googletagmanager']";
-
-  function neutralizeGhosts() {
-    document.querySelectorAll(GHOST_SELECTOR).forEach((el) => {
-      el.style.display = "none";
-      el.style.visibility = "hidden";
-      el.style.pointerEvents = "none";
-      el.style.width = "0px";
-      el.style.height = "0px";
-      el.style.position = "absolute";
-      el.style.left = "-9999px"; // exile
-      el.style.top = "-9999px";
-    });
-  }
-
-  const ghostObserver = new MutationObserver(() => {
-    neutralizeGhosts();
-  });
-
-  // start watching for new spawns
-  ghostObserver.observe(document.body, { childList: true, subtree: true });
-
-  // run once immediately
-  neutralizeGhosts();
-
   return wrapper;
 }
