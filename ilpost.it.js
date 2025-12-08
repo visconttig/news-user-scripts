@@ -94,15 +94,18 @@
     });
   };
 
+  /* Optional elements */
+  let introPicture =
+    "main#index_main-content__nZYrw .index_row-wrap__aFB00 .index_col-wrap__uWeUs article .index_main-content__image__DtJf_ figure";
+
   const selectorMap = {
     header: "header",
+    summarySubtitle: "div[class*='index_main-content__header__WktGW'] h1 + h2",
     metaInfo: "div[class*='_breadcrumbs']",
     shareButton: "div[class*='index_actions']",
     relatedArticles: "div[class*='index_main-content__after']",
     tags: "div[class*='index_art_tag']",
     footer: "footer[class*='footer-minimal']",
-    introPicture:
-      "main#index_main-content__nZYrw .index_row-wrap__aFB00 .index_col-wrap__uWeUs article .index_main-content__image__DtJf_ figure",
     interleavedArticle1: "div#ilpost_gam_article_par_6",
     interleavedArticle: "div#mapp_article_par_6",
     interleavedArticle99: "p:has(strong + a)",

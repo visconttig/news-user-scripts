@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         ElDiario.es - Reader mode
+// @name         ElDiario.es (#ElDiario)
 // @namespace    http://tampermonkey.net/
 // @version      1.1
-// @description  Removes the floating NPR player that interferes with reading
+// @description
 // @match        https://www.eldiario.es/*
 // @grant        none
 // ==/UserScript==
@@ -10,14 +10,24 @@
 (function () {
   "use strict";
 
-  // Inject CSS once
+  // Inject custom styles
   function injectCustomStyles() {
     const style = document.createElement("style");
-    style.textContent = /* css */ `
 
-        body {
-            padding: 3rem 1rem;
-        }
+    style.textContent = /* css */ `
+            
+            .hidden-xyz {
+                visibility: hidden !important;
+            }
+
+            .unmounted {
+                display: none !important;
+            }
+
+
+            .test {
+                border: 7px dashed red !important;
+            }
 
         `;
     document.head.appendChild(style);
@@ -25,76 +35,128 @@
 
   injectCustomStyles();
 
-  const testSelectorMap = {};
+  const testSelectorsMap = {
+    // all: "*",
+    // embeddedInstagram1:
+    //   "div[id='embed-video-container']:has(div[data-testid='embed-video'])",
+    // embeddedInstagram2: "iframe[name='__tt_embed__v71851727139883500']",
+    // embeddedInstagram3: "main[data-e2e='src-theme-template-Main']",
+    // embeddedInstagram4: "div[data-e2e='video-v2-home-ContainerWrapper']",
+    // embeddedInstagram5: "div[data-testid='embed-video']",
+    // embeddedRecommendation: "div[data-testid='embed-recommendation']",
+  };
+
+  // Flatten to use in querySelectorAll
+  const tSelectors = Object.values(testSelectorsMap).join(", ");
 
   const testSelectors = () => {
-    Object.entries(testSelectorMap).forEach(([label, selector]) => {
+    Object.entries(testSelectorsMap).forEach(([label, selector]) => {
       const nodes = document.querySelectorAll(selector);
       nodes.forEach((el) => {
         if (!el.classList.contains("test")) {
           el.classList.add("test");
-          console.log(`Added test class: [${label}]`, el);
+          console.log(`Added test class [${label}]`, el);
         }
       });
     });
   };
 
-  let header = ".header-container";
-  let pre_article_extras = ".row.row__header";
-  let share_buttons = "footer.rs-pill";
-  let authors_info = ".info-wrapper";
-  let twitter_posts = "figure.embed-container.embed-container--type-twitter";
-  let related_articles = "aside.know-more.know-more--with-image";
-  let up_next_videos =
-    "figure.embed-container.embed-container--type-dailymotion.ratio"; // <=== !!! this one hide the videos
-  let subscribeBox = "div#container-after-news-outlook";
-  let tags = ".tags";
-  let goHomeFloatingButton = "a.go-home__wrapper";
-  let extraArticles = ".recirculation-area";
-  let redundant_subtitle = "li.subtitle--hasAnchor";
-  let errorReportButton = "div#error-report";
-  let sponsoredContent = ".sponsored-content-wrapper";
-  let comments = "div#edi-comments";
-  let footer = ".row.row__footer";
-  let advertisingBoxes = "div[class*='edi-advertising']";
-  let contentTag = "div.content-kicker";
-  let contentKicker = "p.image-kicker";
-  let summaryIntro = "ul.footer";
-  let extraSelectors = [
-    header,
-    pre_article_extras,
-    share_buttons,
-    authors_info,
-    twitter_posts,
-    related_articles,
-    subscribeBox,
-    tags,
-    goHomeFloatingButton,
-    extraArticles,
-    redundant_subtitle,
-    errorReportButton,
-    sponsoredContent,
-    comments,
-    footer,
-    advertisingBoxes,
-    contentTag,
-    contentKicker,
-    summaryIntro,
-  ].join(", ");
-
-  const removeElements = () => {
-    const elements = document.querySelector(`${extraSelectors}`);
-    if (elements) {
-      elements.remove();
-      console.log("x removed");
-    }
+  const selectorMap = {
+    header: ".header-container",
+    preArticleExtras: ".row.row__header",
+    shareButtons: "footer.rs-pill",
+    authorsInfo: ".info-wrapper",
+    twitterPosts: "figure.embed-container.embed-container--type-twitter",
+    relatedArticles: "aside.know-more.know-more--with-image",
+    upNextVideos:
+      "figure.embed-container.embed-container--type-dailymotion.ratio",
+    subscribeBox: "div#container-after-news-outlook",
+    tags: ".tags",
+    goHomeFloatingButton: "a.go-home__wrapper",
+    extraArticles: ".recirculation-area",
+    redundantSubtitle: "li.subtitle--hasAnchor",
+    errorReportButton: "div#error-report",
+    sponsoredContent: ".sponsored-content-wrapper",
+    comments: "div#edi-comments",
+    footer: ".row.row__footer",
+    contentTag: "div.content-kicker",
+    contentKicker: "p.image-kicker",
+    summaryIntro: "ul.footer",
   };
 
-  // Initial attempt
-  removeElements();
+  // Flatten to use in querySelectorAll
+  const selectors = Object.values(selectorMap).join(", ");
 
-  // Observer to catch dynamically injected players
-  const observer = new MutationObserver(() => removeElements());
+  const removeElements = () => {
+    Object.entries(selectorMap).forEach(([label, selector]) => {
+      const nodes = document.querySelectorAll(selector);
+      nodes.forEach((el) => {
+        if (!el.classList.contains("unmounted")) {
+          el.classList.add("unmounted");
+          console.log(`👻 Hidden [${label}]`, el);
+        }
+      });
+    });
+  };
+
+  function safelyRemoveAds() {
+    const adSelectors = [
+      "div[class^='edi-advertising']",
+      "div[class*=' edi-advertising']",
+      "div.edi-advertising",
+      "div.ad-mobile-intext",
+      "div.ad-body",
+      "div.ad__no-dotted",
+      "div.ad__no-legend",
+      "div.issticky",
+      "div.isticky",
+      "div[data-google-query-id]",
+      "div[id^='google_ads']",
+      "iframe[src*='doubleclick']",
+      "iframe[src*='googlesyndication']",
+      "iframe[id*='google_ads']",
+    ];
+
+    const safeSelectors = [
+      ".news-header",
+      ".news-header *",
+      "h1.title",
+      ".news-header h1",
+      ".news-header h2",
+      ".news-header ul",
+      ".news-header li",
+      ".news-header a",
+    ];
+
+    const isSafe = (el) => safeSelectors.some((sel) => el.matches(sel));
+
+    for (const sel of adSelectors) {
+      document.querySelectorAll(sel).forEach((el) => {
+        if (isSafe(el)) {
+          console.log("⛔ Skipping protected header element:", el);
+          return;
+        }
+
+        console.log("🧹 Removing ad element:", el);
+        el.remove();
+      });
+    }
+  }
+
+  // Initial run
+  removeElements();
+  testSelectors();
+  safelyRemoveAds();
+
+  // Observe DOM changes and hide again
+  const observer = new MutationObserver(() => {
+    setTimeout(() => {
+      removeElements();
+      testSelectors();
+      safelyRemoveAds();
+      if (window.__probeEmbeds) window.__probeEmbeds({ autoRemove: false });
+    }, 100); // Slight delay to avoid React re-render collision
+  });
 
   observer.observe(document.body, {
     childList: true,

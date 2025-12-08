@@ -14,6 +14,8 @@
     "physics.org.js": ["https://www.phys.org/*"],
     "quanta-magazine.js": ["https://www.quantamagazine.org/*"],
     "reddit.com.js": ["https://www.reddit.com/*"], 
-    "voa-chinese.js": ["https://www.voachinese.com/*"]
+    "voa-chinese.js": ["https://www.voachinese.com/*"],
+    "khan-academy.js": ["https://www.khanacademy.org/*"]
+
   }
 }
