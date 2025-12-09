@@ -44,6 +44,11 @@ TL;DR: ✔ Always override BOTH sources
 
     //inlineLinks: "a[class='focusIndicatorReducedWidth'][href]"
     style.textContent = /* css */ `
+
+            .test {
+                border: 7px dashed red !important;
+            }
+
             .bbc-hidden {
                 display: none !important;
             }
@@ -151,14 +156,12 @@ TL;DR: ✔ Always override BOTH sources
       @media (min-width: 37.5rem) {
         .css-1nfgtt7 {
             padding: 0 0 !important;
-            background-color: green !important;
         }
     }
 
     @media (min-width: 0) {
       body .css-1nfgtt7 {
         padding: 0 !important;
-        background-color: green !important;
       }
     }
 
@@ -169,9 +172,29 @@ TL;DR: ✔ Always override BOTH sources
 
   injectCustomStyles();
 
+  const testSelectorsMap = {
+    // all: "*",
+  };
+
+  // Flatten to use in querySelectorAll
+  const tSelectors = Object.values(testSelectorsMap).join(", ");
+
+  const testSelectors = () => {
+    Object.entries(testSelectorsMap).forEach(([label, selector]) => {
+      const nodes = document.querySelectorAll(selector);
+      nodes.forEach((el) => {
+        if (!el.classList.contains("test")) {
+          el.classList.add("test");
+          console.log(`Added test class [${label}]`, el);
+        }
+      });
+    });
+  };
+
   const selectorMap = {
     header: "header[role='banner']",
     articleInfo: "section[aria-labelledby='article-byline']",
+    whatsappAd: "section[aria-labelledby='podcast-promo']",
     podcastPromo: "div[data-e2e='podcast-promo']",
     relatedSection: "section[data-e2e='recommendations-heading']",
     featuredContent: '[data-testid="features"]',
@@ -216,10 +239,9 @@ TL;DR: ✔ Always override BOTH sources
   };
 
   function disableTargetedLinks() {
-    const links = document
-      .querySelectorAll
-      // "a[class*='focusIndicatorReducedWidth'][href]"
-      ();
+    const links = document.querySelectorAll(
+      "a[class*='focusIndicatorReducedWidth'][href]"
+    );
     links.forEach((link) => {
       // Avoid attaching multiple times
       if (!link.dataset.bbcLinkDisabled) {
@@ -238,12 +260,14 @@ TL;DR: ✔ Always override BOTH sources
   }
 
   // Initial run
+  testSelectors();
   hideElements();
   disableTargetedLinks();
 
   // Observe DOM changes and hide again
   const observer = new MutationObserver(() => {
     setTimeout(() => {
+      testSelectors();
       hideElements();
       disableTargetedLinks();
     }, 100); // Slight delay to avoid React re-render collision
