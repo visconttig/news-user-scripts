@@ -27,14 +27,9 @@
 
             .test {
                 border: 7px dashed red !important;
+                background-color: yellow !important;
+                background: yellow !important;
             }
-
-            // unnecessary borders
-            div[class*='vc_row_inner'], div[class*='td-pb-border-top'] {
-                // border: 7px dotted blue !important;
-                border: none !important;
-            }
-
 
         `;
     document.head.appendChild(style);
@@ -42,10 +37,6 @@
 
   injectCustomStyles();
 
-  // category2: "div[class*='tdb-block-inner']",
-  // sider: "div.wpb_wrapper",
-  // suggestions3: "div[class*='td_block_wrap']",
-  // hr: "div[class*='td-pb-border-top']",
   const testSelectorsMap = {
     // all: "*",
   };
@@ -82,6 +73,11 @@
     topic: "a.tdb-entry-crumb",
     background: "div.td-menu-background",
     tags: "ul.tdb-tags",
+    sider: "[class*='tdi_82']",
+    borderBlocks:
+      "[class*='td-pb-border-top'][class*='tdi_']:not([class*='tdi_49']):not([class*='tdi_64']):not([class*='tdi_56']):not([class*='tdi_50'])",
+    borders2: "div[class*='vc_row_inner']",
+    anotherBorder: "div#tdi_3",
   };
 
   // Flatten to use in querySelectorAll

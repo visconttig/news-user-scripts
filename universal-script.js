@@ -154,7 +154,7 @@
           }
 
 
-          body, p, li, blockquote, article, section, h1, h2, h3, h4, h5, h6 {
+          body, p, li, blockquote, article, section, h1, h2, h3, h4, h5, h6, .tdi_64, .tdi_64>p, .tdi_64 .tdb-block-inner>p, .wp-block-column>p {
             font-family: "Noto Serif", serif !important;
             font-optical-sizing: auto;
             font-weight: 400;
