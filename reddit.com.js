@@ -49,6 +49,7 @@
 
   const testSelectorsMap = {
     // all: "*",
+    loginSider: "aside#right-rail-experience-root",
   };
 
   // Flatten to use in querySelectorAll
@@ -66,9 +67,29 @@
     });
   };
 
+  /*  
+───────────────────────────────────────────────────────────────
+ ⚠️  !! DANGER SELECTOR — DO NOT USE  !!
+───────────────────────────────────────────────────────────────
+
+".flex-grid--main-container-card.right-sidebar-xs"
+
+This selector looks innocent but on Reddit Mobile it wraps HUGE
+chunks of the app, including article hydration roots.  
+
+Removing it = TOTAL PAGE WIPEOUT 🧨  
+(Black screen, no posts, no comments, no recovery.)
+
+If you are reading this thinking  
+"maybe it’s safe now…"  
+NO. IT IS NOT. PUT THE KEYBOARD DOWN. 🖐️😂
+
+This selector must stay UNUSED forever.
+───────────────────────────────────────────────────────────────
+*/
+
   const selectorMap = {
     sideBarContainer: "div#right-sidebar-container",
-    mainArticle: ".flex-grid--main-container-card.right-sidebar-xs",
     subName: "div#pdp-credit-bar",
     header: "header",
     commentsAdd: "shreddit-comments-page-ad",
@@ -117,11 +138,22 @@
     });
   }
 
+  function removeViewInApp() {
+    const appBanner = [...document.querySelectorAll("span")].find(
+      (el) => el.textContent.trim() === "View in Reddit App"
+    );
+
+    if (appBanner) {
+      appBanner.closest("div.relative")?.remove();
+    }
+  }
+
   // Initial run
   removeElements();
   testSelectors();
   expandArticle();
   anonymizeUsernames();
+  removeViewInApp();
 
   // Observe DOM changes and hide again
   const observer = new MutationObserver(() => {
@@ -130,6 +162,7 @@
       removeElements();
       expandArticle();
       anonymizeUsernames();
+      removeViewInApp();
     }, 100); // Slight delay to avoid React re-render collision
   });
 
