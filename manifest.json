@@ -15,7 +15,8 @@
     "quanta-magazine.js": ["https://www.quantamagazine.org/*"],
     "reddit.com.js": ["https://www.reddit.com/*"], 
     "voa-chinese.js": ["https://www.voachinese.com/*"],
-    "khan-academy.js": ["https://www.khanacademy.org/*"]
+    "khan-academy.js": ["https://www.khanacademy.org/*"],
+    "diario-constitucional.js": ["https://www.diarioconstitucional.cl/*"]
 
   }
 }
