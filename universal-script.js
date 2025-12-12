@@ -137,6 +137,28 @@
             box-sizing: border-box;
           }
 
+        /* Prevent collapsed margins: 
+        0.01px padding stops <p> margins 
+        from disappearing — do not remove */
+          .reader-container {
+            padding-top: 0.01px !important;
+            padding-bottom: 0.01px !important;
+          }
+
+
+          :where(.reader-container) p {
+          margin: 0 !important;
+          margin-block: 0 !important;
+          margin-inline: 0 !important;
+          margin-block-start: 0 !important;
+          margin-block-end: 0 !important;
+          margin-inline-start: 0 !important;
+          margin-inline-end: 0 !important;
+
+          /* and now *set* what you want */
+          margin-bottom: 0.4rem !important;
+        }
+
 
           /* Force readable colors but let OS mode decide */
           @media (prefers-color-scheme: light) {
@@ -154,52 +176,63 @@
           }
 
 
-          body, p, li, blockquote, article, section, h1, h2, h3, h4, h5, h6, .tdi_64, .tdi_64>p, .tdi_64 .tdb-block-inner>p, .wp-block-column>p {
+          /* === Universal Typography Override (Unbeatable Version) === */
+          /* Core typography and line-height */
+          :where(.reader-container) :where(
+            body, p, li, blockquote, article, section, h1, h2, h3, h4, h5, h6
+          ) {
             font-family: "Noto Serif", serif !important;
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal;
-            font-variation-settings:
-              "wdth" 100;
+            font-optical-sizing: auto !important;
+            font-weight: 400 !important;
+            font-style: normal !important;
+            font-variation-settings: "wdth" 100 !important;
             line-height: 1.3 !important;
           }
 
-
-          h1, h2, h3, h4, h5, h6 {
+          /* Headings: line-height refinement */
+          :where(.reader-container) :where(h1, h2, h3, h4, h5, h6) {
             line-height: 1.25 !important;
           }
-              
 
-          p {
-                font-size: 1.2rem !important;
+          /* Paragraph size */
+          :where(.reader-container) p {
+            font-size: 1.2rem !important;
           }
 
-          h1 {
-              font-size: 2rem !important;
-              font-weight: 800 !important;
+          /* Heading sizes */
+          :where(.reader-container) h1 {
+            font-size: 2rem !important;
+            font-weight: 800 !important;
           }
 
-          h2 {
-              font-size: 1.6rem !important;
-              font-weight: 600 !important;
+          :where(.reader-container) h2 {
+            font-size: 1.6rem !important;
+            font-weight: 600 !important;
           }
 
-          p[class*='caption'], 
-          div[class*='caption'] p, 
-          figcaption, figcaption * {
+          /* Captions */
+          :where(.reader-container) :where(
+            p[class*="caption"],
+            div[class*="caption"] p,
+            figcaption,
+            figcaption *
+          ) {
             color: gray !important;
             font-size: 0.8rem !important;
             line-height: 1.2 !important;
           }
 
-
-
-          a.disabled-link, p a u {
-              pointer-events: none !important;
-              color: inherit !important;
-              text-decoration: none !important;
-              border-bottom: none !important;
+          /* Disable link behavior */
+          :where(.reader-container) :where(
+            a.disabled-link,
+            p a u
+          ) {
+            pointer-events: none !important;
+            color: inherit !important;
+            text-decoration: none !important;
+            border-bottom: none !important;
           }
+
 
     `;
     document.head.appendChild(style);
@@ -220,6 +253,18 @@
     });
   }
 
+  function enforceCleanTypography() {
+    document.querySelectorAll(".reader-container p").forEach((p) => {
+      p.style.setProperty("font-family", "Noto Serif, serif", "important");
+      p.style.setProperty("font-size", "1.2rem", "important");
+      p.style.setProperty("line-height", "1.3", "important");
+      p.style.setProperty("font-weight", "400", "important");
+      p.style.setProperty("font-style", "normal", "important");
+      p.style.setProperty("font-optical-sizing", "auto", "important");
+      p.style.setProperty("font-variation-settings", '"wdth" 100', "important");
+    });
+  }
+
   // Observe DOM changes and hide again
   const observer = new MutationObserver(() => {
     setTimeout(() => {
@@ -228,6 +273,7 @@
       }
       removeElements();
       injectCustomStyles();
+      enforceCleanTypography();
     }, 100); // Slight delay to avoid React re-render collision
   });
 
@@ -238,6 +284,7 @@
 
   injectCustomStyles();
   removeElements();
+  enforceCleanTypography();
   observer.observe(document.body, { childList: true, subtree: true });
 })();
 

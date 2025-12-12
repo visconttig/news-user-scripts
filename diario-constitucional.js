@@ -30,8 +30,17 @@
                 background-color: yellow !important;
                 background: yellow !important;
             }
+            
 
-        `;
+            .td-pb-span8 {
+               width: 100% !important;
+            }
+
+
+
+
+
+            `;
     document.head.appendChild(style);
   }
 

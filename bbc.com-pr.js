@@ -157,13 +157,18 @@ TL;DR: ✔ Always override BOTH sources
         .css-1nfgtt7 {
             padding: 0 0 !important;
         }
-    }
-
-    @media (min-width: 0) {
-      body .css-1nfgtt7 {
-        padding: 0 !important;
       }
-    }
+
+      @media (min-width: 0) {
+        body .css-1nfgtt7 {
+          padding: 0 !important;
+        }
+      }
+
+      // paragraphs padding
+      .css-s4cjt0, .css-s4cjt0 {
+        padding-bottom: 0.4rem !important;
+      }
 
 }
         `;
