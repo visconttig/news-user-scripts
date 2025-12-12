@@ -76,6 +76,7 @@
     /cn\.nytimes\.com/,
     /diarioconstitucional\.cl/,
     /voachinese\.com/,
+    /biobiochile\.cl/,
   ];
 
   // ==========================
