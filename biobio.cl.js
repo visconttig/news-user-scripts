@@ -79,7 +79,6 @@
               padding: 0 !important; /* optional, removes extra gap */
             }
 
-
         `;
     document.head.appendChild(style);
   }
@@ -87,7 +86,7 @@
   injectCustomStyles();
 
   const testSelectorsMap = {
-    // all: "*",
+    /* all: "*", */
   };
 
   // Flatten to use in querySelectorAll
@@ -136,6 +135,13 @@
     audioPlayer: "audio",
     quotations: "blockquote.twitter-tweet",
     instagram: "blockquote.instagram-media",
+    embeddedVideo1: "blockquote.tiktok-embed",
+    postMeta: "div.post-text-container div:last-of-type",
+    visitsCounter2: "div.post-visits-social-container",
+    errorsFeedBack: "div.openFormCorreccion",
+    correctionsButton: "a.boton-correcciones",
+    newsLetterFooterBanner:
+      "div:has(> a[href='https://www.biobiochile.cl/newsletter/'])",
   };
 
   // Flatten to use in querySelectorAll
@@ -165,15 +171,15 @@
   };
 
   // Initial run
-  removeElements();
   testSelectors();
+  removeElements();
   disableInfinitScroll();
 
   // Observe DOM changes and hide again
   const observer = new MutationObserver(() => {
     setTimeout(() => {
-      removeElements();
       testSelectors();
+      removeElements();
       disableInfinitScroll();
     }, 100); // Slight delay to avoid React re-render collision
   });
