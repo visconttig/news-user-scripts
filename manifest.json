@@ -5,7 +5,8 @@
 
     "npr-news.js": ["https://www.npr.org/*"],
     "ars-technica.js": ["https://www.arstechnica.com/*"],
-    "bbc.com-pr.js": ["https://www.bbc.com/*", "!https://www.bbc.com/zhongwen/*"],
+    "bbc.com-pr.js": ["https://www.bbc.com/*", "!https://www.bbc.com/zhongwen/*", "!https://www.bbc.com/news/*"],
+    "bbc.com-news.js": ["https://www.bbc.com/news/*"],
     "bbc.com-zh.js": ["https://www.bbc.com/zhongwen/*"],
     "china-news.com.js": ["https://www.chinanews.com.cn/*"],
     "el-diario.es.js": ["https://www.eldiario.es/*"],

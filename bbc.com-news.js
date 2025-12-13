@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.1
 // @description
-// @match        https://www.bbc.com/*
+// @match        https://www.bbc.com/news/*
 // @grant        none
 // ==/UserScript==
 
@@ -74,7 +74,7 @@ TL;DR: ✔ Always override BOTH sources
           }
 
 
-          /* BBC paragraphs */
+          // BBC paragraphs
           @media screen and (max-width: 1279px) {
             .dPVOKT {
                 width: 100% !important;
@@ -93,7 +93,7 @@ TL;DR: ✔ Always override BOTH sources
             width: 100% !important;
         }
 
-        /* BBC images */
+        // BBC images
         @media screen and (max-width: 1279px) {
             .GunZh {
                 width: 100% !important;
@@ -106,20 +106,20 @@ TL;DR: ✔ Always override BOTH sources
             width: 100% !important;
         }
 
-        /* BBC videos */
+        // BBC videos
         @media screen and (max-width: 1279px) {
             .gXrNRM {
                 width: 100% !important;
             }
         }
 
-        /* videos */
+        // videos
         .gXrNRM {
             width: 100% !important;
         }
 
 
-        /* BBC images slider */
+        // BBC images slider
         @media screen and (max-width: 1279px) {
             .Qwxkf {
                 width: 100% !important;
@@ -131,7 +131,7 @@ TL;DR: ✔ Always override BOTH sources
         }
 
 
-      /* Video-articles */
+      // Video-articles
       @media screen and (max-width: 1279px) {
           .cxmRwZ {
               width: 100% !important;
@@ -152,7 +152,7 @@ TL;DR: ✔ Always override BOTH sources
       }
 
 
-        /* Unnecessary space before article's title */
+        // Unnecessary space before article's title
       @media (min-width: 37.5rem) {
         .css-1nfgtt7 {
             padding: 0 0 !important;
@@ -165,7 +165,7 @@ TL;DR: ✔ Always override BOTH sources
         }
       }
 
-      /* paragraphs padding */
+      // paragraphs padding
       .css-s4cjt0, .css-s4cjt0 {
         padding-bottom: 0.4rem !important;
       }
@@ -226,10 +226,8 @@ TL;DR: ✔ Always override BOTH sources
     imageCreditsZh: "p[class='css-1276odk']",
     innerAds3: "section[data-e2e='advertisement']",
     innerAds4: "div[data-testid='ad-unit']",
+    hiddenDivs: "div[aria-hidden='true']",
     hiddenElements: "div[class*='bbc-hidden']",
-    inArticleSuggestions: "section[data-e2e='scrollable-promos']",
-    endOfArticleInfo:
-      "main div:nth-last-of-type(2):has(i), main div:nth-last-of-type(3):has(i)",
   };
 
   // Flatten to use in querySelectorAll
@@ -268,8 +266,17 @@ TL;DR: ✔ Always override BOTH sources
     });
   }
 
+  const removeHiddenElements = () => {
+    let hiddenElements = document.querySelectorAll("div[class*='bbc-hidden']");
+
+    hiddenElements.forEach((el) => {
+      el.remove();
+    });
+  };
+
   // Initial run
   testSelectors();
+  removeHiddenElements();
   hideElements();
   disableTargetedLinks();
 
@@ -277,6 +284,7 @@ TL;DR: ✔ Always override BOTH sources
   const observer = new MutationObserver(() => {
     setTimeout(() => {
       testSelectors();
+      removeHiddenElements();
       hideElements();
       disableTargetedLinks();
     }, 100); // Slight delay to avoid React re-render collision
