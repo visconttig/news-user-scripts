@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "universal-script.js": ["*", "!https://www.bbc.com/zhongwen/*", "!https://www.chinanews.com.cn/*", "!https://www.voachinese.com/*"],
+    "universal-script.js": ["*", "!https://www.bbc.com/zhongwen/*", "!https://www.chinanews.com.cn/*", "!https://www.voachinese.com/*", "!https://www.chatgpt.com/*"],
 
 
     "npr-news.js": ["https://www.npr.org/*"],
@@ -18,7 +18,8 @@
     "voa-chinese.js": ["https://www.voachinese.com/*"],
     "khan-academy.js": ["https://www.khanacademy.org/*"],
     "diario-constitucional.js": ["https://www.diarioconstitucional.cl/*"],
-    "biobio.cl.js": ["https://www.biobiochile.cl/*"]
+    "biobio.cl.js": ["https://www.biobiochile.cl/*"],
+    "chatgpt.com.js": ["https://www.chatgpt.com/*"]
 
   }
 }
