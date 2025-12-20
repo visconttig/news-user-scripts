@@ -77,6 +77,7 @@
     /diarioconstitucional\.cl/,
     /voachinese\.com/,
     /biobiochile\.cl/,
+    /scotusblog\.com/,
   ];
 
   // ==========================

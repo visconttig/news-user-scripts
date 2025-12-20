@@ -19,7 +19,8 @@
     "khan-academy.js": ["https://www.khanacademy.org/*"],
     "diario-constitucional.js": ["https://www.diarioconstitucional.cl/*"],
     "biobio.cl.js": ["https://www.biobiochile.cl/*"],
-    "chatgpt.com.js": ["https://www.chatgpt.com/*"]
+    "chatgpt.com.js": ["https://www.chatgpt.com/*"],
+    "scotus-blog.com.js": ["https://www.scotusblog.com/*"]
 
   }
 }
