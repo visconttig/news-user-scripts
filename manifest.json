@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "universal-script.js": ["*", "!https://www.bbc.com/zhongwen/*", "!https://www.chinanews.com.cn/*", "!https://www.voachinese.com/*", "!https://www.chatgpt.com/*"],
+    "universal-script.js": ["*", "!https://www.bbc.com/zhongwen/*", "!https://www.chinanews.com.cn/*", "!https://www.voachinese.com/*", "!https://www.chatgpt.com/*", "!https://news.cctv.com/*", "!https://rlevel.visconttig.com/*"],
 
 
     "npr-news.js": ["https://www.npr.org/*"],
@@ -20,7 +20,9 @@
     "diario-constitucional.js": ["https://www.diarioconstitucional.cl/*"],
     "biobio.cl.js": ["https://www.biobiochile.cl/*"],
     "chatgpt.com.js": ["https://www.chatgpt.com/*"],
-    "scotus-blog.com.js": ["https://www.scotusblog.com/*"]
+    "scotus-blog.com.js": ["https://www.scotusblog.com/*"],
+    "cctv.com.js": ["https://news.cctv.com/*"],
+    "rlevel.visconttig.com.js": ["https://rlevel.visconttig.com/*"]
 
   }
 }

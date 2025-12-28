@@ -42,7 +42,6 @@ TL;DR: ✔ Always override BOTH sources
   function injectCustomStyles() {
     const style = document.createElement("style");
 
-    //inlineLinks: "a[class='focusIndicatorReducedWidth'][href]"
     style.textContent = /* css */ `
 
             .test {
