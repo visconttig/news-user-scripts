@@ -83,7 +83,7 @@
   // ==========================
   // Blacklist (sites to EXCLUDE from universal styling)
   // ==========================
-  const blacklistArray = [/inoreader\.com/];
+  const blacklistArray = [/inoreader\.com/, /rlevel\.visconttig\.com/];
 
   const url = location.href;
 

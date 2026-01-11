@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         Relevel (#Rlvl)
+// @name         Localhost (#lclh)
 // @namespace    http://tampermonkey.net/
 // @version      1.1
 // @description
-// @match        https://rlevel.visconttig.com/*
+// @match        http://localhost*
 // @grant        none
 // ==/UserScript==
 
@@ -32,24 +32,25 @@
                 border-bottom: none;
             }
 
+
             /* Force readable colors but let OS mode decide */
-          @media (prefers-color-scheme: light) {
+            @media (prefers-color-scheme: light) {
             body, * {
-              background-color: #fff !important;
-              color: #000 !important;
+                background-color: #fff !important;
+                color: #000 !important;
             }
-          }
+            }
 
-          @media (prefers-color-scheme: dark) {
+            @media (prefers-color-scheme: dark) {
             body, * {
-              background-color: #000 !important;
-              color: #fff !important;
+                background-color: #000 !important;
+                color: #fff !important;
             }
-          }
+            }
 
-          body {
+            body {
             padding: 0 32px !important;
-          }
+            }
 
             body, 
             div p,
@@ -82,26 +83,25 @@
 
 
             body, p, li, blockquote, article, section, h1, h2, h3, h4, h5, h6 {
-              font-optical-sizing: auto;
-              font-weight: 400;
-              font-style: normal;
-              font-variation-settings:
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-variation-settings:
                 "wdth" 100;
-              line-height: 1.3 !important;
+            line-height: 1.3 !important;
             }
 
 
             h1, h2, h3, h4, h5, h6 {
-              line-height: 1.25 !important;
+            line-height: 1.25 !important;
             }
 
             a.disabled-link, p a u {
-              pointer-events: none !important;
-              color: inherit !important;
-              text-decoration: none !important;
-              border-bottom: none !important;
+                pointer-events: none !important;
+                color: inherit !important;
+                text-decoration: none !important;
+                border-bottom: none !important;
             }
-
 
             img {
               max-width: 100%;
@@ -109,10 +109,9 @@
             }
 
             img {
-              width: 100% !important;
-              height: auto !important;
+                width: 100% !important;
+                height: auto !important;
             }
-
 
 
             .test {

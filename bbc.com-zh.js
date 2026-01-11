@@ -25,10 +25,10 @@
             }
 
               #main-navigation-container, 
-  header {
-    display: none !important;
-    z-index: -9999 !important;
-  }
+            header {
+              display: none !important;
+              z-index: -9999 !important;
+            }
 
               a[class*='focusIndicatorReducedWidth'][href] {
                 text-decoration: none;
@@ -39,93 +39,93 @@
 
 
                 @media (min-width: 63rem) {
-    *[class*="bbc-"] {
-        grid-column: unset !important;
-        grid-template-columns: none !important;
-        max-width: 100% !important;
-    }
+          *[class*="bbc-"] {
+              grid-column: unset !important;
+              grid-template-columns: none !important;
+              max-width: 100% !important;
+          }
 
-    .css-1cvxiy9 {
-      grid-column: 1 / 13 !important;
-    }
-  }
-
-
-  // BBC Chinese (in English) paragraphs
-  @media screen and (max-width: 1279px) {
-    .dPVOKT {
-        width: 100% !important;
-    }    
-
-        .hNbOGD {
-        width: 100% !important;
-    }
-}
-
-.dPVOKT {
-    width: 100% !important;
-}
-
-.hNbOGD {
-    width: 100% !important;
-}
-
-// BBC Chinese (in English) images
-@media screen and (max-width: 1279px) {
-    .GunZh {
-        width: 100% !important;
-    }
-
-}
-
-.GunZh
- {
-    width: 100% !important;
-}
-
-// BBC Chinese (in English) videos
-@media screen and (max-width: 1279px) {
-    .gXrNRM {
-        width: 100% !important;
-    }
-}
-
-// videos
-.gXrNRM {
-    width: 100% !important;
-}
+          .css-1cvxiy9 {
+            grid-column: 1 / 13 !important;
+          }
+        }
 
 
-// BBC Chinese (in English) images slider
-@media screen and (max-width: 1279px) {
-    .Qwxkf {
-        width: 100% !important;
-    }
-}
+        // BBC Chinese (in English) paragraphs
+        @media screen and (max-width: 1279px) {
+          .dPVOKT {
+              width: 100% !important;
+          }    
 
-.Qwxkf {
-    width: 100% !important;
-}
+              .hNbOGD {
+              width: 100% !important;
+          }
+      }
+
+      .dPVOKT {
+          width: 100% !important;
+      }
+
+      .hNbOGD {
+          width: 100% !important;
+      }
+
+      // BBC Chinese (in English) images
+      @media screen and (max-width: 1279px) {
+          .GunZh {
+              width: 100% !important;
+          }
+
+      }
+
+      .GunZh
+      {
+          width: 100% !important;
+      }
+
+      // BBC Chinese (in English) videos
+      @media screen and (max-width: 1279px) {
+          .gXrNRM {
+              width: 100% !important;
+          }
+      }
+
+      // videos
+      .gXrNRM {
+          width: 100% !important;
+      }
 
 
-            /* Force readable colors but let OS mode decide */
-@media (prefers-color-scheme: light) {
-  body, * {
-    background-color: #fff !important;
-    color: #000 !important;
-  }
-}
+      // BBC Chinese (in English) images slider
+      @media screen and (max-width: 1279px) {
+          .Qwxkf {
+              width: 100% !important;
+          }
+      }
 
-@media (prefers-color-scheme: dark) {
-  body, * {
-    background-color: #000 !important;
-    color: #fff !important;
-  }
-}
+      .Qwxkf {
+          width: 100% !important;
+      }
 
-body {
-  padding: 0 32px !important;
-}
+
+                  /* Force readable colors but let OS mode decide */
+      @media (prefers-color-scheme: light) {
+        body, * {
+          background-color: #fff !important;
+          color: #000 !important;
+        }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body, * {
+          background-color: #000 !important;
+          color: #fff !important;
+        }
+      }
+
+      body {
+        padding: 0 32px !important;
+      }
 
             body, 
             div p,
@@ -149,11 +149,10 @@ h1#content.article-heading.css-nir6jv {
 
 
 
-            FIGCAPTION SPAN {
-                // FONT-SIZE: 1.4REM !IMPORTANT;
-                FONT-SIZE: 1REM !IMPORTANT;
-                COLOR: GREY !IMPORTANT;
-            }
+              figcaption span {
+                  font-size: 1rem !important;
+                  color: grey !important;
+              }
 
 
 

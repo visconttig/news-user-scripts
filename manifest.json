@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "universal-script.js": ["*", "!https://www.bbc.com/zhongwen/*", "!https://www.chinanews.com.cn/*", "!https://www.voachinese.com/*", "!https://www.chatgpt.com/*", "!https://news.cctv.com/*", "!https://rlevel.visconttig.com/*"],
+    "universal-script.js": ["*", "!https://www.bbc.com/zhongwen/*", "!https://www.chinanews.com.cn/*", "!https://www.voachinese.com/*", "!https://www.chatgpt.com/*", "!https://news.cctv.com/*", "!https://rlevel.visconttig.com/*", "!https://www.google.com/*", "!http://localhost:4000/rss/*"],
 
 
     "npr-news.js": ["https://www.npr.org/*"],
@@ -22,7 +22,8 @@
     "chatgpt.com.js": ["https://www.chatgpt.com/*"],
     "scotus-blog.com.js": ["https://www.scotusblog.com/*"],
     "cctv.com.js": ["https://news.cctv.com/*"],
-    "rlevel.visconttig.com.js": ["https://rlevel.visconttig.com/*"]
+    "rlevel.visconttig.com.js": ["https://rlevel.visconttig.com/*"],
+    "localhost.js": ["http://localhost*", "!http://localhost:4000/rss/*"]
 
   }
 }
