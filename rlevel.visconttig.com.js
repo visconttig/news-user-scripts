@@ -54,7 +54,7 @@
             body, 
             div p,
             figcaption span {
-                font-size: 1.6rem !important;
+                font-size: 1.2rem !important;
                 font-family: "Noto Serif SC", serif !important;
                 font-optical-sizing: auto;
                 font-weight: 500;
