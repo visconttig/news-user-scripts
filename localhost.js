@@ -72,6 +72,10 @@
               margin-bottom: 1rem;
             }
 
+            p {
+              margin-bottom: 0.6rem;
+            }
+
             section {
               margin-bottom: 3rem;
             }
