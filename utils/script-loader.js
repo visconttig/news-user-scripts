@@ -2,7 +2,7 @@
 // @name         Dev Loader (JSON manifest)
 // @match        *://*/*
 // @grant        GM_xmlhttpRequest
-// @connect      localhost
+// @connect 127.0.0.1
 // @run-at       document-start
 // ==/UserScript==
 
@@ -27,7 +27,7 @@ Seriously. Update it. Do it now.
     return;
   }
 
-  const localDevServerRoot = "http://localhost:8080/";
+  const localDevServerRoot = "http://127.0.0.1:8080/";
   const manifestJsonUrl = localDevServerRoot + "manifest.json";
 
   // Track scripts injected for this page session (helps with SPA nav)
@@ -142,6 +142,14 @@ Seriously. Update it. Do it now.
         console.error("Invalid manifest:", err);
       }
     },
-    onerror: (err) => console.error("Error loading manifest.json:", err),
+    onerror: (err) => {
+      console.error("❌ Manifest request failed");
+      console.error("Details:", {
+        status: err.status,
+        statusText: err.statusText,
+        response: err.responseText,
+        finalUrl: err.finalUrl,
+      });
+    },
   });
 })();
