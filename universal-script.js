@@ -78,6 +78,7 @@
     /voachinese\.com/,
     /biobiochile\.cl/,
     /scotusblog\.com/,
+    // /g1\.globo\.com/,
   ];
 
   // ==========================
@@ -305,14 +306,14 @@ function wrapReaderContent() {
   const body = document.body;
   if (!body) {
     console.error(
-      "[Reader] document.body not found — this should never happen."
+      "[Reader] document.body not found — this should never happen.",
     );
     return null;
   }
 
   console.log(
     "[Reader] document.body found. Child nodes count:",
-    body.childNodes.length
+    body.childNodes.length,
   );
 
   const wrapper = document.createElement("div");
@@ -342,11 +343,11 @@ function wrapReaderContent() {
   const check = document.querySelector(".reader-container");
   if (check) {
     console.log(
-      "[Reader] Wrapper successfully found in document after append."
+      "[Reader] Wrapper successfully found in document after append.",
     );
   } else {
     console.error(
-      "[Reader] Wrapper NOT found after append — something removed it!"
+      "[Reader] Wrapper NOT found after append — something removed it!",
     );
   }
 

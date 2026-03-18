@@ -38,14 +38,10 @@
   injectCustomStyles();
 
   const testSelectorsMap = {
-    all: "*",
-    subtitle: "h1.content-head__subtitle",
-    articleMeta: div["class*='content__signa-share mc-column'"],
-    shareButtons: div["class*='glb-share-bar content__share-bar'"],
-    summaryContainer: div["class*='mc-summary-card__summary-container'"],
-    adsBlock: div["class*='content-ads content-ads--reveal'"],
-    audioPlayer: div["class='player-container'"],
-    newsletterSection: div["class*='mc-column newsletter-g1'"],
+    // all: "*",
+    //>>>>> Avoid; too broad
+    // baixeOApp: "div[data-block-type='raw']",
+    //>>>>> Working ✅
   };
 
   // Flatten to use in querySelectorAll
@@ -63,7 +59,26 @@
     });
   };
 
-  const selectorMap = {};
+  const selectorMap = {
+    moreRead: "div[class*='mais-lidas__wrapper']",
+    moreFromG1: "div[class~='feed']",
+    nextArticle: "section[id='next-article']",
+    audioPlayer: "div[data-block-type='multicontent-podcast']",
+    seeAlsoVideos: "div[class*='shadow-video-flow']",
+    suggestedVideos: "div[data-block-type='backstage-video']",
+    commentsSection: "div[id='boxComentarios']",
+    videos: "video",
+    tags: "ul[data-track-action='tag semantica']",
+    subtitle: "h2[itemprop='alternativeHeadline']",
+    articleMeta: "div[class*='content__signa-share mc-column']",
+    shareButtons: "div[class*='glb-share-bar content__share-bar']",
+    summaryContainer: "div[class*='mc-summary-card__summary-container']",
+    adsBlock: "div[class*='content-ads content-ads--reveal']",
+    newsletterSection: "div[class*='mc-column newsletter-g1']",
+    /*** To review; too general ***/
+    suggestedArticlesAndAppDownload:
+      "ul[data-mrf-recirculation*='Leia Também']",
+  };
 
   // Flatten to use in querySelectorAll
   const selectors = Object.values(selectorMap).join(", ");
