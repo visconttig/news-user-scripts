@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         G1 (#G1)
+// @name         APNews (#AP)
 // @namespace    http://tampermonkey.net/
 // @version      1.1
 // @description
-// @match        https://g1.globo.com/*
+// @match        https://apnews.com/*
 // @grant        none
 // ==/UserScript==
 
@@ -31,6 +31,14 @@
 
 
 
+    @media only screen and (min-width: 1024px) {
+    .Page-twoColumn {
+        display: block !important;
+    }
+}
+
+
+
         `;
     document.head.appendChild(style);
   }
@@ -39,32 +47,6 @@
 
   const testSelectorsMap = {
     // all: "*",
-    //>>>>> Avoid; too broad
-    // baixeOApp: "div[data-block-type='raw']",
-    //>>>>> Working ✅
-    moreRead: "div[class*='mais-lidas__wrapper']",
-    moreFromG1: "div[class~='feed']",
-    nextArticle: "section[id='next-article']",
-    audioPlayer: "div[data-block-type='multicontent-podcast']",
-    seeAlsoVideos: "div[class*='shadow-video-flow']",
-    suggestedVideos: "div[data-block-type='backstage-video']",
-    commentsSection: "div[id='boxComentarios']",
-    videos: "video",
-    tags: "ul[data-track-action='tag semantica']",
-    subtitle: "h2[itemprop='alternativeHeadline']",
-    articleMeta: "div[class*='content__signa-share mc-column']",
-    shareButtons: "div[class*='glb-share-bar content__share-bar']",
-    summaryContainer: "div[class*='mc-summary-card__summary-container']",
-    adsBlock: "div[class*='content-ads content-ads--reveal']",
-    newsletterSection: "div.mc-column.newsletter-g1",
-    menuOverlay: "div[id='menu-curtain']",
-    menuContainer: "nav[id='menu-container']",
-    header: "div[id='glb-topo']",
-    footer: "footer",
-
-    /*** To review; too general ***/
-    suggestedArticlesAndAppDownload:
-      "ul[data-mrf-recirculation*='Leia Também']",
   };
 
   // Flatten to use in querySelectorAll
@@ -82,7 +64,21 @@
     });
   };
 
-  const selectorMap = {};
+  const selectorMap = {
+    script: "script",
+    header: "div.Page-header-stickyWrap",
+    introTag: "div.Page-breadcrumbs",
+    metaInfo: "div.StoryPage-actions-wrapper",
+    asideMostRead: "aside",
+    articleAds: "div.fs-feed-ad",
+    related: "*[data-parsely-title='Related Stories']",
+    authorInfo: "div.Page-authorInfo",
+    footer: "footer",
+    accessBtn: "div[id='usntA40Toggle']",
+    accessBtn2: "div[id='usntA40Toggle']",
+    accessBtn3: "a[id='usntA40Link']",
+    hiddenAd: "div.LeaderBoardAd-Web",
+  };
 
   // Flatten to use in querySelectorAll
   const selectors = Object.values(selectorMap).join(", ");

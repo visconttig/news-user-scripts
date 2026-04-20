@@ -79,6 +79,7 @@
     /biobiochile\.cl/,
     /scotusblog\.com/,
     // /g1\.globo\.com/,
+    /apnews\.com/,
   ];
 
   // ==========================
