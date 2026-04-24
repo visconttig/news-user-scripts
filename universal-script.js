@@ -230,7 +230,7 @@
           :where(.reader-container) :where(
             a.disabled-link,
             p a u
-          ) {
+          ), a {
             pointer-events: none !important;
             color: inherit !important;
             text-decoration: none !important;

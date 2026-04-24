@@ -78,6 +78,8 @@
     accessBtn2: "div[id='usntA40Toggle']",
     accessBtn3: "a[id='usntA40Link']",
     hiddenAd: "div.LeaderBoardAd-Web",
+    newsletterBox: "div[class*='ap-newsletter']",
+    ads: "div[class*='Advertisement']",
   };
 
   // Flatten to use in querySelectorAll
